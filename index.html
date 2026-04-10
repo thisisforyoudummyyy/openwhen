@@ -1,0 +1,307 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Open When...</title>
+  <style>
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+      background: #fff8fe;
+      color: #2c2c2a;
+      min-height: 100vh;
+      padding: 2rem 1rem;
+    }
+
+    .header {
+      text-align: center;
+      margin-bottom: 2rem;
+    }
+
+    .header .top-emoji {
+      font-size: 48px;
+      display: block;
+      margin-bottom: 0.75rem;
+    }
+
+    .header h1 {
+      font-size: 26px;
+      font-weight: 600;
+      color: #c45c8a;
+      margin-bottom: 0.5rem;
+    }
+
+    .header p {
+      font-size: 15px;
+      color: #888;
+      line-height: 1.7;
+    }
+
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+      gap: 12px;
+      max-width: 540px;
+      margin: 0 auto 2rem;
+    }
+
+    .mood-btn {
+      background: #fff;
+      border: 1.5px solid #f4c0d1;
+      border-radius: 16px;
+      padding: 18px 12px;
+      cursor: pointer;
+      text-align: center;
+      transition: transform 0.15s, background 0.15s, border-color 0.15s;
+    }
+
+    .mood-btn:hover {
+      background: #fff0f6;
+      border-color: #d4537e;
+      transform: scale(1.04);
+    }
+
+    .mood-btn:active {
+      transform: scale(0.97);
+    }
+
+    .mood-emoji {
+      font-size: 28px;
+      display: block;
+      margin-bottom: 8px;
+    }
+
+    .mood-label {
+      font-size: 13px;
+      font-weight: 600;
+      color: #993556;
+    }
+
+    .message-card {
+      display: none;
+      max-width: 540px;
+      margin: 0 auto;
+      background: #fff;
+      border: 1.5px solid #f4c0d1;
+      border-radius: 20px;
+      padding: 2rem 1.5rem;
+    }
+
+    .message-card.visible {
+      display: block;
+    }
+
+    .card-emoji {
+      font-size: 40px;
+      display: block;
+      margin-bottom: 1rem;
+    }
+
+    .card-title {
+      font-size: 12px;
+      font-weight: 700;
+      color: #d4537e;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      margin-bottom: 0.75rem;
+    }
+
+    .card-text {
+      font-size: 16px;
+      color: #3d3d3a;
+      line-height: 1.85;
+      margin-bottom: 1.5rem;
+    }
+
+    .back-btn {
+      background: none;
+      border: 1.5px solid #f4c0d1;
+      border-radius: 10px;
+      padding: 10px 20px;
+      font-size: 13px;
+      color: #993556;
+      cursor: pointer;
+      font-weight: 500;
+      transition: background 0.15s;
+    }
+
+    .back-btn:hover {
+      background: #fff0f6;
+    }
+
+    .footer {
+      text-align: center;
+      margin-top: 2.5rem;
+      font-size: 13px;
+      color: #bbb;
+    }
+  </style>
+</head>
+<body>
+
+  <div id="home">
+    <div class="header">
+      <span class="top-emoji">💌</span>
+      <h1>Open when...</h1>
+      <p>Hey you. Pick how you're feeling right now<br>and I've got something just for you.</p>
+    </div>
+
+    <div class="grid">
+      <button class="mood-btn" onclick="show('happy')">
+        <span class="mood-emoji">😊</span>
+        <span class="mood-label">Happy</span>
+      </button>
+      <button class="mood-btn" onclick="show('sad')">
+        <span class="mood-emoji">😢</span>
+        <span class="mood-label">Sad</span>
+      </button>
+      <button class="mood-btn" onclick="show('bored')">
+        <span class="mood-emoji">😴</span>
+        <span class="mood-label">Bored</span>
+      </button>
+      <button class="mood-btn" onclick="show('hungry')">
+        <span class="mood-emoji">🍜</span>
+        <span class="mood-label">Hungry</span>
+      </button>
+      <button class="mood-btn" onclick="show('sleepy')">
+        <span class="mood-emoji">🌙</span>
+        <span class="mood-label">Sleepy</span>
+      </button>
+      <button class="mood-btn" onclick="show('loved')">
+        <span class="mood-emoji">🥰</span>
+        <span class="mood-label">Loved</span>
+      </button>
+      <button class="mood-btn" onclick="show('laugh')">
+        <span class="mood-emoji">😂</span>
+        <span class="mood-label">Need a laugh</span>
+      </button>
+      <button class="mood-btn" onclick="show('lonely')">
+        <span class="mood-emoji">🫂</span>
+        <span class="mood-label">Lonely</span>
+      </button>
+      <button class="mood-btn" onclick="show('stressed')">
+        <span class="mood-emoji">😰</span>
+        <span class="mood-label">Stressed</span>
+      </button>
+      <button class="mood-btn" onclick="show('angry')">
+        <span class="mood-emoji">😤</span>
+        <span class="mood-label">Angry</span>
+      </button>
+      <button class="mood-btn" onclick="show('cantsleep')">
+        <span class="mood-emoji">🌃</span>
+        <span class="mood-label">Can't sleep</span>
+      </button>
+      <button class="mood-btn" onclick="show('sick')">
+        <span class="mood-emoji">🤒</span>
+        <span class="mood-label">Sick</span>
+      </button>
+    </div>
+
+    <div class="footer">made with love, just for you 💕</div>
+  </div>
+
+  <div class="message-card" id="msg-card">
+    <span class="card-emoji" id="msg-emoji"></span>
+    <div class="card-title" id="msg-title"></div>
+    <div class="card-text" id="msg-text"></div>
+    <button class="back-btn" onclick="goBack()">← Back</button>
+  </div>
+
+  <script>
+    const messages = {
+      happy: {
+        emoji: "😊",
+        title: "Open when you're happy",
+        // ✏️ EDIT YOUR MESSAGE BELOW
+        text: "YES!! Look at you, all happy and glowing! I love seeing you like this. Whatever made you smile today — hold onto it. You deserve every bit of this joy. Don't let it go too fast, okay? Soak it all in. I'm so glad you're happy right now. 🌈"
+      },
+      sad: {
+        emoji: "😢",
+        title: "Open when you're sad",
+        // ✏️ EDIT YOUR MESSAGE BELOW
+        text: "Hey. It's okay to feel sad. You don't have to pretend to be fine. Cry if you need to — it's not weakness, it's just being human. I wish I could be there to sit with you right now. Just know that this feeling won't last forever, and you are so so loved. I'm always rooting for you. 💙"
+      },
+      bored: {
+        emoji: "😴",
+        title: "Open when you're bored",
+        // ✏️ EDIT YOUR MESSAGE BELOW
+        text: "Okay bored person, here's your mission: go drink a glass of water, do 10 jumping jacks, and then text me something random. Or go find a snack. Or watch something dumb on YouTube. Life's too short to stay bored — go make something happen! 🎉"
+      },
+      hungry: {
+        emoji: "🍜",
+        title: "Open when you're hungry",
+        // ✏️ EDIT YOUR MESSAGE BELOW
+        text: "Oh no, the tummy is speaking! First of all — go eat something, why are you reading this instead?! I hope it's something delicious. If not, you deserve a treat today. Get yourself something good. You've earned it. Now go EAT. 🍜"
+      },
+      sleepy: {
+        emoji: "🌙",
+        title: "Open when you're sleepy",
+        // ✏️ EDIT YOUR MESSAGE BELOW
+        text: "Put the phone down. I mean it. You need rest more than you need to scroll. Your body is asking for a break — please listen to it. Close your eyes, take a deep breath, and let yourself drift off. Sweet dreams, you. I hope you wake up feeling amazing. 🌙"
+      },
+      loved: {
+        emoji: "🥰",
+        title: "Open when you feel loved",
+        // ✏️ EDIT YOUR MESSAGE BELOW
+        text: "Good. Because you ARE loved — deeply, genuinely, fully. Not just today, but always. I hope you remember this feeling on the hard days too. You are someone worth loving, and don't you ever forget it. 🥰"
+      },
+      laugh: {
+        emoji: "😂",
+        title: "Open when you need a laugh",
+        // ✏️ EDIT YOUR MESSAGE BELOW
+        text: "Why did the scarecrow win an award? Because he was outstanding in his field. 🌾 Okay okay, if that didn't work — go search 'cats being idiots' on YouTube. I promise it will fix everything. Laughter is free medicine and you deserve a big dose today. 😂"
+      },
+      lonely: {
+        emoji: "🫂",
+        title: "Open when you feel lonely",
+        // ✏️ EDIT YOUR MESSAGE BELOW
+        text: "I know that feeling — like the room is full but you're somehow still alone. But hey, I'm here with you right now, even through this screen. You are not forgotten. You are not invisible. Someone out there thinks about you more than you know. You matter. Always. 🫂"
+      },
+      stressed: {
+        emoji: "😰",
+        title: "Open when you're stressed",
+        // ✏️ EDIT YOUR MESSAGE BELOW
+        text: "Stop. Breathe in for 4 counts, hold for 4, out for 4. Do it again. You've survived 100% of your hard days so far — this one is no different. Whatever is stressing you out, it is temporary. You are stronger than the problem. Take it one step at a time. I believe in you. 🌿"
+      },
+      angry: {
+        emoji: "😤",
+        title: "Open when you're angry",
+        // ✏️ EDIT YOUR MESSAGE BELOW
+        text: "Okay, you're allowed to be angry. That feeling is valid. But before you do anything — step away, breathe, drink some cold water. Don't let the anger make decisions for you. Give it 10 minutes. Then you'll handle it like the composed, incredible person you are. You've got this. 💪"
+      },
+      cantsleep: {
+        emoji: "🌃",
+        title: "Open when you can't sleep",
+        // ✏️ EDIT YOUR MESSAGE BELOW
+        text: "It's late and your brain won't shut up, huh? Try this: put the phone face down, close your eyes, and just focus on your breathing. Don't try to sleep — just rest. Your body knows what to do. And if it really won't come, that's okay too. Tomorrow is a new day. I hope peace finds you soon. 🌃"
+      },
+      sick: {
+        emoji: "🤒",
+        title: "Open when you're sick",
+        // ✏️ EDIT YOUR MESSAGE BELOW
+        text: "Awww nooo! Being sick is the worst. Please rest, drink lots of water, and be gentle with yourself today. You don't have to do anything. Just focus on getting better. I wish I could bring you soup right now. Feel better soon — I miss the healthy, energetic you! 💊🍵"
+      }
+    };
+
+    function show(mood) {
+      const m = messages[mood];
+      document.getElementById('msg-emoji').textContent = m.emoji;
+      document.getElementById('msg-title').textContent = m.title;
+      document.getElementById('msg-text').textContent = m.text;
+      document.getElementById('home').style.display = 'none';
+      const card = document.getElementById('msg-card');
+      card.classList.add('visible');
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    }
+
+    function goBack() {
+      document.getElementById('home').style.display = 'block';
+      document.getElementById('msg-card').classList.remove('visible');
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    }
+  </script>
+
+</body>
+</html>
