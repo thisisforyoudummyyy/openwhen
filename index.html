@@ -289,7 +289,7 @@
       const m = messages[mood];
       document.getElementById('msg-emoji').textContent = m.emoji;
       document.getElementById('msg-title').textContent = m.title;
-      document.getElementById('msg-text').textContent = m.text;
+      document.getElementById('msg-text').innerHTML = m.text.replace(/\n/g, '<br>');
       document.getElementById('home').style.display = 'none';
       const card = document.getElementById('msg-card');
       card.classList.add('visible');
