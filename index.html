@@ -6,7 +6,6 @@
   <title>Open When...</title>
   <style>
     * { box-sizing: border-box; margin: 0; padding: 0; }
-
     body {
       font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
       background: #fff8fe;
@@ -14,129 +13,44 @@
       min-height: 100vh;
       padding: 2rem 1rem;
     }
+    .header { text-align: center; margin-bottom: 2rem; }
+    .header .top-emoji { font-size: 48px; display: block; margin-bottom: 0.75rem; }
+    .header h1 { font-size: 26px; font-weight: 600; color: #c45c8a; margin-bottom: 0.5rem; }
+    .header p { font-size: 15px; color: #888; line-height: 1.7; }
+    .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(140px, 1fr)); gap: 12px; max-width: 540px; margin: 0 auto 2rem; }
+    .mood-btn { background: #fff; border: 1.5px solid #f4c0d1; border-radius: 16px; padding: 18px 12px; cursor: pointer; text-align: center; transition: transform 0.15s, background 0.15s, border-color 0.15s; }
+    .mood-btn:hover { background: #fff0f6; border-color: #d4537e; transform: scale(1.04); }
+    .mood-btn:active { transform: scale(0.97); }
+    .mood-emoji { font-size: 28px; display: block; margin-bottom: 8px; }
+    .mood-label { font-size: 13px; font-weight: 600; color: #993556; }
+    .message-card { display: none; max-width: 540px; margin: 0 auto; background: #fff; border: 1.5px solid #f4c0d1; border-radius: 20px; padding: 2rem 1.5rem; }
+    .message-card.visible { display: block; }
+    .card-emoji { font-size: 40px; display: block; margin-bottom: 1rem; }
+    .card-title { font-size: 12px; font-weight: 700; color: #d4537e; text-transform: uppercase; letter-spacing: 0.08em; margin-bottom: 0.75rem; }
+    .card-text { font-size: 16px; color: #3d3d3a; line-height: 1.85; margin-bottom: 1.5rem; }
+    .back-btn { background: none; border: 1.5px solid #f4c0d1; border-radius: 10px; padding: 10px 20px; font-size: 13px; color: #993556; cursor: pointer; font-weight: 500; transition: background 0.15s; }
+    .back-btn:hover { background: #fff0f6; }
+    .footer { text-align: center; margin-top: 2.5rem; font-size: 13px; color: #bbb; }
 
-    .header {
-      text-align: center;
-      margin-bottom: 2rem;
-    }
-
-    .header .top-emoji {
-      font-size: 48px;
-      display: block;
-      margin-bottom: 0.75rem;
-    }
-
-    .header h1 {
-      font-size: 26px;
-      font-weight: 600;
-      color: #c45c8a;
-      margin-bottom: 0.5rem;
-    }
-
-    .header p {
-      font-size: 15px;
-      color: #888;
-      line-height: 1.7;
-    }
-
-    .grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
-      gap: 12px;
-      max-width: 540px;
-      margin: 0 auto 2rem;
-    }
-
-    .mood-btn {
-      background: #fff;
-      border: 1.5px solid #f4c0d1;
-      border-radius: 16px;
-      padding: 18px 12px;
-      cursor: pointer;
-      text-align: center;
-      transition: transform 0.15s, background 0.15s, border-color 0.15s;
-    }
-
-    .mood-btn:hover {
-      background: #fff0f6;
-      border-color: #d4537e;
-      transform: scale(1.04);
-    }
-
-    .mood-btn:active {
-      transform: scale(0.97);
-    }
-
-    .mood-emoji {
-      font-size: 28px;
-      display: block;
-      margin-bottom: 8px;
-    }
-
-    .mood-label {
-      font-size: 13px;
-      font-weight: 600;
-      color: #993556;
-    }
-
-    .message-card {
-      display: none;
-      max-width: 540px;
-      margin: 0 auto;
-      background: #fff;
-      border: 1.5px solid #f4c0d1;
-      border-radius: 20px;
-      padding: 2rem 1.5rem;
-    }
-
-    .message-card.visible {
-      display: block;
-    }
-
-    .card-emoji {
-      font-size: 40px;
-      display: block;
-      margin-bottom: 1rem;
-    }
-
-    .card-title {
-      font-size: 12px;
-      font-weight: 700;
-      color: #d4537e;
-      text-transform: uppercase;
-      letter-spacing: 0.08em;
-      margin-bottom: 0.75rem;
-    }
-
-    .card-text {
-      font-size: 16px;
-      color: #3d3d3a;
-      line-height: 1.85;
-      margin-bottom: 1.5rem;
-    }
-
-    .back-btn {
-      background: none;
-      border: 1.5px solid #f4c0d1;
-      border-radius: 10px;
-      padding: 10px 20px;
-      font-size: 13px;
-      color: #993556;
-      cursor: pointer;
-      font-weight: 500;
-      transition: background 0.15s;
-    }
-
-    .back-btn:hover {
-      background: #fff0f6;
-    }
-
-    .footer {
-      text-align: center;
-      margin-top: 2.5rem;
-      font-size: 13px;
-      color: #bbb;
-    }
+    /* Hike experience */
+    .hike-card { display: none; max-width: 540px; margin: 0 auto; border-radius: 20px; overflow: hidden; border: 1.5px solid #B5D4F4; }
+    .hike-card.visible { display: block; }
+    .hike-scene { position: relative; min-height: 420px; display: flex; flex-direction: column; justify-content: flex-end; }
+    .hike-bg { position: absolute; inset: 0; background-size: cover; background-position: center; border-radius: 0; }
+    .hike-overlay { position: absolute; inset: 0; background: linear-gradient(to top, rgba(0,0,0,0.75) 0%, rgba(0,0,0,0.1) 60%); }
+    .hike-content { position: relative; z-index: 1; padding: 1.5rem; color: #fff; }
+    .hike-progress { display: flex; gap: 6px; margin-bottom: 1rem; }
+    .hike-dot { width: 8px; height: 8px; border-radius: 50%; background: rgba(255,255,255,0.35); transition: background 0.3s; }
+    .hike-dot.active { background: #fff; }
+    .hike-scene-emoji { font-size: 36px; display: block; margin-bottom: 0.5rem; }
+    .hike-title { font-size: 18px; font-weight: 700; margin-bottom: 0.5rem; color: #fff; }
+    .hike-text { font-size: 14px; line-height: 1.75; color: rgba(255,255,255,0.9); margin-bottom: 1.25rem; }
+    .hike-next-btn { background: rgba(255,255,255,0.2); border: 1.5px solid rgba(255,255,255,0.5); color: #fff; border-radius: 10px; padding: 10px 22px; font-size: 14px; font-weight: 500; cursor: pointer; transition: background 0.15s; backdrop-filter: blur(4px); }
+    .hike-next-btn:hover { background: rgba(255,255,255,0.35); }
+    .hike-back-btn { display: block; text-align: center; margin-top: 0; padding: 12px; background: #fff; font-size: 13px; color: #185FA5; cursor: pointer; border: none; width: 100%; font-weight: 500; }
+    .hike-back-btn:hover { background: #E6F1FB; }
+    .hearts { font-size: 20px; letter-spacing: 4px; margin-top: 0.5rem; }
+    .final-note { font-size: 13px; color: rgba(255,255,255,0.7); margin-top: 0.75rem; font-style: italic; }
   </style>
 </head>
 <body>
@@ -149,54 +63,18 @@
     </div>
 
     <div class="grid">
-      <button class="mood-btn" onclick="show('goodday')">
-        <span class="mood-emoji">😆</span>
-        <span class="mood-label">having a good day</span>
-      </button>
-      <button class="mood-btn" onclick="show('accomplished')">
-        <span class="mood-emoji">✨</span>
-        <span class="mood-label">you accomplished something</span>
-      </button>
-      <button class="mood-btn" onclick="show('aura')">
-        <span class="mood-emoji">🤡</span>
-        <span class="mood-label">you're acting cool but we both know you're not (aura my ass)</span>
-      </button>
-      <button class="mood-btn" onclick="show('alone')">
-        <span class="mood-emoji">🫂</span>
-        <span class="mood-label">you feel alone</span>
-      </button>
-      <button class="mood-btn" onclick="show('procrastinate')">
-        <span class="mood-emoji">🙃</span>
-        <span class="mood-label">you're procrastinating instead of doing work</span>
-      </button>
-      <button class="mood-btn" onclick="show('bored')">
-        <span class="mood-emoji">😈</span>
-        <span class="mood-label">you're bored and bothering people</span>
-      </button>
-      <button class="mood-btn" onclick="show('thinking')">
-        <span class="mood-emoji">🤍</span>
-        <span class="mood-label">you're thinking about things you won’t tell anyone</span>
-      </button>
-      <button class="mood-btn" onclick="show('pretend')">
-        <span class="mood-emoji">🎭</span>
-        <span class="mood-label">you're tired of pretending you're okay</span>
-      </button>
-      <button class="mood-btn" onclick="show('textmepls')">
-        <span class="mood-emoji">📱</span>
-        <span class="mood-label">you feel like texting me but don't</span>
-      </button>
-      <button class="mood-btn" onclick="show('thinkaboutu')">
-        <span class="mood-emoji">👀</span>
-        <span class="mood-label">you're wondering if anyone thinks about you</span>
-      </button>
-      <button class="mood-btn" onclick="show('cryalone')">
-        <span class="mood-emoji">😞</span>
-        <span class="mood-label">you're crying alone</span>
-      </button>
-      <button class="mood-btn" onclick="show('diff')">
-        <span class="mood-emoji">💙</span>
-        <span class="mood-label">you wish things were different</span>
-      </button>
+      <button class="mood-btn" onclick="show('goodday')"><span class="mood-emoji">😆</span><span class="mood-label">having a good day</span></button>
+      <button class="mood-btn" onclick="show('accomplished')"><span class="mood-emoji">✨</span><span class="mood-label">you accomplished something</span></button>
+      <button class="mood-btn" onclick="show('aura')"><span class="mood-emoji">🤡</span><span class="mood-label">you're acting cool but we both know you're not (aura my ass)</span></button>
+      <button class="mood-btn" onclick="show('alone')"><span class="mood-emoji">🫂</span><span class="mood-label">you feel alone</span></button>
+      <button class="mood-btn" onclick="show('procrastinate')"><span class="mood-emoji">🙃</span><span class="mood-label">you're procrastinating instead of doing work</span></button>
+      <button class="mood-btn" onclick="show('bored')"><span class="mood-emoji">😈</span><span class="mood-label">you're bored and bothering people</span></button>
+      <button class="mood-btn" onclick="show('thinking')"><span class="mood-emoji">🤍</span><span class="mood-label">you're thinking about things you won't tell anyone</span></button>
+      <button class="mood-btn" onclick="show('pretend')"><span class="mood-emoji">🎭</span><span class="mood-label">you're tired of pretending you're okay</span></button>
+      <button class="mood-btn" onclick="show('textmepls')"><span class="mood-emoji">📱</span><span class="mood-label">you feel like texting me but don't</span></button>
+      <button class="mood-btn" onclick="show('thinkaboutu')"><span class="mood-emoji">👀</span><span class="mood-label">you're wondering if anyone thinks about you</span></button>
+      <button class="mood-btn" onclick="show('diff')"><span class="mood-emoji">💙</span><span class="mood-label">you wish things were different</span></button>
+      <button class="mood-btn" onclick="showHike()"><span class="mood-emoji">💍</span><span class="mood-label">you want to get proposed to</span></button>
     </div>
 
     <div class="footer">made with love, just for you 💕</div>
@@ -209,81 +87,48 @@
     <button class="back-btn" onclick="goBack()">← Back</button>
   </div>
 
+  <div class="hike-card" id="hike-card">
+    <div class="hike-scene" id="hike-scene">
+      <div class="hike-bg" id="hike-bg"></div>
+      <div class="hike-overlay"></div>
+      <div class="hike-content">
+        <div class="hike-progress" id="hike-progress"></div>
+        <span class="hike-scene-emoji" id="hike-emoji"></span>
+        <div class="hike-title" id="hike-title"></div>
+        <div class="hike-text" id="hike-text"></div>
+        <div id="hike-hearts" style="display:none;" class="hearts">💙 💙 💙</div>
+        <div id="hike-note" class="final-note" style="display:none;">p.s. you can stop crying now, it's embarrassing 😂</div>
+        <button class="hike-next-btn" id="hike-btn" onclick="nextHike()">Next →</button>
+      </div>
+    </div>
+    <button class="hike-back-btn" onclick="goBack()">← Back to menu</button>
+  </div>
+
   <script>
     const messages = {
-      goodday: {
-        emoji: "😆",
-        title: "Open when you're having a good day",
-        // ✏️ EDIT YOUR MESSAGE BELOW
-        text: "The best is yet to come.\n\np.s. I really believe this for you 💛"
-      },
-      accomplished: {
-        emoji: "✨",
-        title: "Open when you accomplished something",
-        // ✏️ EDIT YOUR MESSAGE BELOW
-        text: "The best is yet to come.\n\np.s. I really believe this for you 💛"
-      },
-      aura: {
-        emoji: "🤡",
-        title: "Open when you're acting cool but we both know you're not (aura my ass)",
-        // ✏️ EDIT YOUR MESSAGE BELOW
-        text: "The best is yet to come.\n\np.s. I really believe this for you 💛"
-      },
-      alone: {
-        emoji: "🫂",
-        title: "Open when you feel alone",
-        // ✏️ EDIT YOUR MESSAGE BELOW
-        text: "The best is yet to come.\n\np.s. I really believe this for you 💛"
-      },
-      procrastinate: {
-        emoji: "🙃",
-        title: "Open when you're procrastinating instead of doing work (stop looking at other guys😠)",
-        // ✏️ EDIT YOUR MESSAGE BELOW
-        text: "The best is yet to come.\n\np.s. I really believe this for you 💛"
-      },
-      bored: {
-        emoji: "😈",
-        title: "Open when you're bored and bothering people",
-        // ✏️ EDIT YOUR MESSAGE BELOW
-        text: "The best is yet to come.\n\np.s. I really believe this for you 💛"
-      },
-      thinking: {
-        emoji: "🤍",
-        title: "Open when you're thinking about things you won’t tell anyone",
-        // ✏️ EDIT YOUR MESSAGE BELOW
-        text: "The best is yet to come.\n\np.s. I really believe this for you 💛"
-      },
-      pretend: {
-        emoji: "🎭",
-        title: "Open when you're tired of pretending you're okay",
-        // ✏️ EDIT YOUR MESSAGE BELOW
-        text: "The best is yet to come.\n\np.s. I really believe this for you 💛"
-      },
-      textmepls: {
-        emoji: "📱",
-        title: "Open when you feel like texting me but don't",
-        // ✏️ EDIT YOUR MESSAGE BELOW
-        text: "The best is yet to come.\n\np.s. I really believe this for you 💛"
-      },
-      thinkaboutu: {
-        emoji: "👀",
-        title: "Open when you're wondering if anyone thinks about you (spoiler: yes 👀)",
-        // ✏️ EDIT YOUR MESSAGE BELOW
-        text: "The best is yet to come.\n\np.s. I really believe this for you 💛"
-      },
-      cryalone: {
-        emoji: "😞",
-        title: "Open when you're crying alone",
-        // ✏️ EDIT YOUR MESSAGE BELOW
-        text: "The best is yet to come.\n\np.s. I really believe this for you 💛"
-      },
-      diff: {
-        emoji: "💙",
-        title: "Open when you wish things were different",
-        // ✏️ EDIT YOUR MESSAGE BELOW
-        text: "The best is yet to come.\n\np.s. I really believe this for you 💛"
-      }
+      goodday: { emoji: "😆", title: "Open when you're having a good day", text: "The best is yet to come.\n\np.s. I really believe this for you 💛" },
+      accomplished: { emoji: "✨", title: "Open when you accomplished something", text: "The best is yet to come.\n\np.s. I really believe this for you 💛" },
+      aura: { emoji: "🤡", title: "Open when you're acting cool but we both know you're not (aura my ass)", text: "The best is yet to come.\n\np.s. I really believe this for you 💛" },
+      alone: { emoji: "🫂", title: "Open when you feel alone", text: "The best is yet to come.\n\np.s. I really believe this for you 💛" },
+      procrastinate: { emoji: "🙃", title: "Open when you're procrastinating instead of doing work", text: "The best is yet to come.\n\np.s. I really believe this for you 💛" },
+      bored: { emoji: "😈", title: "Open when you're bored and bothering people", text: "The best is yet to come.\n\np.s. I really believe this for you 💛" },
+      thinking: { emoji: "🤍", title: "Open when you're thinking about things you won't tell anyone", text: "The best is yet to come.\n\np.s. I really believe this for you 💛" },
+      pretend: { emoji: "🎭", title: "Open when you're tired of pretending you're okay", text: "The best is yet to come.\n\np.s. I really believe this for you 💛" },
+      textmepls: { emoji: "📱", title: "Open when you feel like texting me but don't", text: "The best is yet to come.\n\np.s. I really believe this for you 💛" },
+      thinkaboutu: { emoji: "👀", title: "Open when you're wondering if anyone thinks about you (spoiler: yes 👀)", text: "The best is yet to come.\n\np.s. I really believe this for you 💛" },
+      diff: { emoji: "💙", title: "Open when you wish things were different", text: "The best is yet to come.\n\np.s. I really believe this for you 💛" }
     };
+
+    const hikeSteps = [
+      { bg: "hike1.jpg", emoji: "🥾", title: "The plan", text: "Okay Jaenne, lace up. We're going somewhere. No, I'm not telling you where. Just trust the process and stop asking questions for once in your life." },
+      { bg: "hike2.jpg", emoji: "🌲", title: "The trail begins", text: "The path winds through pine trees, cool air, birds doing their thing. You're already taking 47 photos. The view ahead looks promising. Your legs feel good. Your heart feels lighter." },
+      { bg: "hike3.jpg", emoji: "⛰️", title: "Halfway up", text: "Okay we're sweating a little. Not a lot. Just the right amount. You stop to catch your breath and turn around — the valley below looks like a painting. You didn't know the world could look like this." },
+      { bg: "hike4.jpg", emoji: "🌄", title: "The Dolomites", text: "We made it. The jagged peaks stretch out in every direction. The sky is that impossible shade of blue. Everything is quiet except the wind. You're standing at the top of the world, Jaenne." },
+      { bg: "hike5.jpg", emoji: "🫳", title: "One sec...", text: "You turn around and I'm... not standing anymore. I'm down on one knee. Which, for the record, is actually quite difficult on rocky mountain terrain and I'd like some credit for that." },
+      { bg: "hike6.jpg", emoji: "💍", title: "Jaenne.", text: "You told me your dream. A hike, a nice place, a view worth remembering. I just wanted you to know — I heard you. Every word. And I'd climb every mountain just to give you the things you dream about.\n\nThis isn't the real thing yet. But one day it will be. 💙", final: true }
+    ];
+
+    let hikeStep = 0;
 
     function show(mood) {
       const m = messages[mood];
@@ -291,14 +136,44 @@
       document.getElementById('msg-title').textContent = m.title;
       document.getElementById('msg-text').innerHTML = m.text.replace(/\n/g, '<br>');
       document.getElementById('home').style.display = 'none';
-      const card = document.getElementById('msg-card');
-      card.classList.add('visible');
+      document.getElementById('msg-card').classList.add('visible');
       window.scrollTo({ top: 0, behavior: 'smooth' });
+    }
+
+    function showHike() {
+      hikeStep = 0;
+      document.getElementById('home').style.display = 'none';
+      document.getElementById('hike-card').classList.add('visible');
+      renderHikeStep();
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    }
+
+    function renderHikeStep() {
+      const s = hikeSteps[hikeStep];
+      document.getElementById('hike-bg').style.backgroundImage = 'url(' + s.bg + ')';
+      document.getElementById('hike-emoji').textContent = s.emoji;
+      document.getElementById('hike-title').textContent = s.title;
+      document.getElementById('hike-text').innerHTML = s.text.replace(/\n/g, '<br>');
+      document.getElementById('hike-hearts').style.display = s.final ? 'block' : 'none';
+      document.getElementById('hike-note').style.display = s.final ? 'block' : 'none';
+      document.getElementById('hike-btn').style.display = s.final ? 'none' : 'inline-block';
+      const prog = document.getElementById('hike-progress');
+      prog.innerHTML = '';
+      hikeSteps.forEach((_, i) => {
+        const d = document.createElement('div');
+        d.className = 'hike-dot' + (i === hikeStep ? ' active' : '');
+        prog.appendChild(d);
+      });
+    }
+
+    function nextHike() {
+      if (hikeStep < hikeSteps.length - 1) { hikeStep++; renderHikeStep(); }
     }
 
     function goBack() {
       document.getElementById('home').style.display = 'block';
       document.getElementById('msg-card').classList.remove('visible');
+      document.getElementById('hike-card').classList.remove('visible');
       window.scrollTo({ top: 0, behavior: 'smooth' });
     }
   </script>
