@@ -6,13 +6,7 @@
   <title>Open When...</title>
   <style>
     * { box-sizing: border-box; margin: 0; padding: 0; }
-    body {
-      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
-      background: #fff8fe;
-      color: #2c2c2a;
-      min-height: 100vh;
-      padding: 2rem 1rem;
-    }
+    body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif; background: #fff8fe; color: #2c2c2a; min-height: 100vh; padding: 2rem 1rem; }
     .header { text-align: center; margin-bottom: 2rem; }
     .header .top-emoji { font-size: 48px; display: block; margin-bottom: 0.75rem; }
     .header h1 { font-size: 26px; font-weight: 600; color: #c45c8a; margin-bottom: 0.5rem; }
@@ -31,13 +25,11 @@
     .back-btn { background: none; border: 1.5px solid #f4c0d1; border-radius: 10px; padding: 10px 20px; font-size: 13px; color: #993556; cursor: pointer; font-weight: 500; transition: background 0.15s; }
     .back-btn:hover { background: #fff0f6; }
     .footer { text-align: center; margin-top: 2.5rem; font-size: 13px; color: #bbb; }
-
-    /* Hike experience */
     .hike-card { display: none; max-width: 540px; margin: 0 auto; border-radius: 20px; overflow: hidden; border: 1.5px solid #B5D4F4; }
     .hike-card.visible { display: block; }
-    .hike-scene { position: relative; min-height: 420px; display: flex; flex-direction: column; justify-content: flex-end; }
-    .hike-bg { position: absolute; inset: 0; background-size: cover; background-position: center; border-radius: 0; }
-    .hike-overlay { position: absolute; inset: 0; background: linear-gradient(to top, rgba(0,0,0,0.75) 0%, rgba(0,0,0,0.1) 60%); }
+    .hike-scene { position: relative; min-height: 460px; display: flex; flex-direction: column; justify-content: flex-end; }
+    .hike-bg { position: absolute; inset: 0; background-size: cover; background-position: center; }
+    .hike-overlay { position: absolute; inset: 0; background: linear-gradient(to top, rgba(0,0,0,0.78) 0%, rgba(0,0,0,0.1) 60%); }
     .hike-content { position: relative; z-index: 1; padding: 1.5rem; color: #fff; }
     .hike-progress { display: flex; gap: 6px; margin-bottom: 1rem; }
     .hike-dot { width: 8px; height: 8px; border-radius: 50%; background: rgba(255,255,255,0.35); transition: background 0.3s; }
@@ -45,12 +37,31 @@
     .hike-scene-emoji { font-size: 36px; display: block; margin-bottom: 0.5rem; }
     .hike-title { font-size: 18px; font-weight: 700; margin-bottom: 0.5rem; color: #fff; }
     .hike-text { font-size: 14px; line-height: 1.75; color: rgba(255,255,255,0.9); margin-bottom: 1.25rem; }
-    .hike-next-btn { background: rgba(255,255,255,0.2); border: 1.5px solid rgba(255,255,255,0.5); color: #fff; border-radius: 10px; padding: 10px 22px; font-size: 14px; font-weight: 500; cursor: pointer; transition: background 0.15s; backdrop-filter: blur(4px); }
+    .hike-next-btn { background: rgba(255,255,255,0.2); border: 1.5px solid rgba(255,255,255,0.5); color: #fff; border-radius: 10px; padding: 10px 22px; font-size: 14px; font-weight: 500; cursor: pointer; transition: background 0.15s; }
     .hike-next-btn:hover { background: rgba(255,255,255,0.35); }
-    .hike-back-btn { display: block; text-align: center; margin-top: 0; padding: 12px; background: #fff; font-size: 13px; color: #185FA5; cursor: pointer; border: none; width: 100%; font-weight: 500; }
+    .hike-back-btn { display: block; text-align: center; padding: 14px; background: #fff; font-size: 13px; color: #185FA5; cursor: pointer; border: none; width: 100%; font-weight: 500; }
     .hike-back-btn:hover { background: #E6F1FB; }
-    .hearts { font-size: 20px; letter-spacing: 4px; margin-top: 0.5rem; }
-    .final-note { font-size: 13px; color: rgba(255,255,255,0.7); margin-top: 0.75rem; font-style: italic; }
+    .final-scene { background: linear-gradient(180deg, #0a1628 0%, #1a3a6b 50%, #2d5aa0 100%); min-height: 460px; display: none; flex-direction: column; justify-content: center; align-items: center; text-align: center; padding: 2rem 1.5rem; position: relative; overflow: hidden; }
+    .final-scene.show { display: flex; }
+    .final-stars { position: absolute; inset: 0; pointer-events: none; }
+    .star { position: absolute; width: 2px; height: 2px; background: #fff; border-radius: 50%; }
+    .final-content { position: relative; z-index: 2; }
+    .final-ring { font-size: 56px; display: block; margin-bottom: 1rem; }
+    .final-title { font-size: 22px; font-weight: 700; color: #fff; margin-bottom: 0.75rem; }
+    .final-text { font-size: 14px; color: rgba(255,255,255,0.85); line-height: 1.85; margin-bottom: 0.75rem; }
+    .final-hearts { font-size: 20px; letter-spacing: 4px; margin-bottom: 0.25rem; }
+    .final-ps { font-size: 12px; color: rgba(255,255,255,0.6); font-style: italic; margin-bottom: 1.5rem; }
+    .btn-row { display: flex; justify-content: center; gap: 16px; align-items: center; position: relative; min-height: 50px; }
+    .yes-btn { background: #185FA5; color: #fff; border: none; border-radius: 12px; padding: 12px 32px; font-size: 16px; font-weight: 600; cursor: pointer; transition: transform 0.15s, background 0.15s; z-index: 2; }
+    .yes-btn:hover { background: #0C447C; transform: scale(1.05); }
+    .no-btn { background: rgba(255,255,255,0.1); color: rgba(255,255,255,0.7); border: 1.5px solid rgba(255,255,255,0.3); border-radius: 12px; padding: 12px 32px; font-size: 16px; font-weight: 600; cursor: pointer; position: absolute; left: 55%; transition: transform 0.3s; }
+    .yes-response { display: none; }
+    .yes-response.show { display: block; }
+    .yes-resp-emoji { font-size: 48px; display: block; margin-bottom: 0.75rem; }
+    .yes-resp-title { font-size: 20px; font-weight: 700; color: #fff; margin-bottom: 0.5rem; }
+    .yes-resp-text { font-size: 14px; color: rgba(255,255,255,0.85); line-height: 1.8; }
+    .confetti-piece { position: absolute; width: 8px; height: 8px; border-radius: 2px; animation: fall 2s ease-in forwards; pointer-events: none; z-index: 10; }
+    @keyframes fall { 0% { transform: translateY(-20px) rotate(0deg); opacity: 1; } 100% { transform: translateY(500px) rotate(720deg); opacity: 0; } }
   </style>
 </head>
 <body>
@@ -61,7 +72,6 @@
       <h1>Open when...</h1>
       <p>happy birthday dummy!! hehe sorry idk what to get you <br> sooo i made this!! okay boring, fuck you</p>
     </div>
-
     <div class="grid">
       <button class="mood-btn" onclick="show('goodday')"><span class="mood-emoji">😆</span><span class="mood-label">having a good day</span></button>
       <button class="mood-btn" onclick="show('accomplished')"><span class="mood-emoji">✨</span><span class="mood-label">you accomplished something</span></button>
@@ -76,7 +86,6 @@
       <button class="mood-btn" onclick="show('diff')"><span class="mood-emoji">💙</span><span class="mood-label">you wish things were different</span></button>
       <button class="mood-btn" onclick="showHike()"><span class="mood-emoji">💍</span><span class="mood-label">you want to get proposed to</span></button>
     </div>
-
     <div class="footer">made with love, just for you 💕</div>
   </div>
 
@@ -96,9 +105,28 @@
         <span class="hike-scene-emoji" id="hike-emoji"></span>
         <div class="hike-title" id="hike-title"></div>
         <div class="hike-text" id="hike-text"></div>
-        <div id="hike-hearts" style="display:none;" class="hearts">💙 💙 💙</div>
-        <div id="hike-note" class="final-note" style="display:none;">p.s. you can stop crying now, it's embarrassing 😂</div>
         <button class="hike-next-btn" id="hike-btn" onclick="nextHike()">Next →</button>
+      </div>
+    </div>
+    <div class="final-scene" id="final-scene">
+      <div class="final-stars" id="final-stars"></div>
+      <div class="final-content">
+        <div id="proposal-view">
+          <span class="final-ring">💍</span>
+          <div class="final-title">Jaenne.</div>
+          <div class="final-text">You told me your dream. A hike, a nice place, a view worth remembering.<br><br>I just wanted you to know — I heard you. Every word. And I'd climb every mountain just to give you the things you dream about.<br><br>This isn't the real thing yet. But one day it will be. 💙</div>
+          <div class="final-hearts">💙 💙 💙</div>
+          <div class="final-ps">p.s. you can stop crying now, it's embarrassing 😂</div>
+          <div class="btn-row" id="btn-row">
+            <button class="yes-btn" onclick="clickYes()">Yes 💙</button>
+            <button class="no-btn" id="no-btn" onmouseover="runAway()" ontouchstart="runAway()">No</button>
+          </div>
+        </div>
+        <div class="yes-response" id="yes-response">
+          <span class="yes-resp-emoji">🥹💙</span>
+          <div class="yes-resp-title">I KNEW IT.</div>
+          <div class="yes-resp-text">okay noted. adding it to the schedule 😤<br><br>see you at the top of the Dolomites then 🏔️💙</div>
+        </div>
       </div>
     </div>
     <button class="hike-back-btn" onclick="goBack()">← Back to menu</button>
@@ -124,11 +152,20 @@
       { bg: "hike2.jpg", emoji: "🌲", title: "The trail begins", text: "The path winds through pine trees, cool air, birds doing their thing. You're already taking 47 photos. The view ahead looks promising. Your legs feel good. Your heart feels lighter." },
       { bg: "hike3.jpg", emoji: "⛰️", title: "Halfway up", text: "Okay we're sweating a little. Not a lot. Just the right amount. You stop to catch your breath and turn around — the valley below looks like a painting. You didn't know the world could look like this." },
       { bg: "hike4.jpg", emoji: "🌄", title: "The Dolomites", text: "We made it. The jagged peaks stretch out in every direction. The sky is that impossible shade of blue. Everything is quiet except the wind. You're standing at the top of the world, Jaenne." },
-      { bg: "hike5.jpg", emoji: "🫳", title: "One sec...", text: "You turn around and I'm... not standing anymore. I'm down on one knee. Which, for the record, is actually quite difficult on rocky mountain terrain and I'd like some credit for that." },
-      { bg: "hike6.jpg", emoji: "💍", title: "Jaenne.", text: "You told me your dream. A hike, a nice place, a view worth remembering. I just wanted you to know — I heard you. Every word. And I'd climb every mountain just to give you the things you dream about.\n\nThis isn't the real thing yet. But one day it will be. 💙", final: true }
+      { bg: "hike5.jpg", emoji: "🫳", title: "One sec...", text: "You turn around and I'm... not standing anymore. I'm down on one knee. Which, for the record, is actually quite difficult on rocky mountain terrain and I'd like some credit for that." }
     ];
 
     let hikeStep = 0;
+    let noAttempts = 0;
+
+    for (let i = 0; i < 40; i++) {
+      const s = document.createElement('div');
+      s.className = 'star';
+      s.style.left = Math.random() * 100 + '%';
+      s.style.top = Math.random() * 100 + '%';
+      s.style.opacity = Math.random() * 0.8 + 0.2;
+      document.getElementById('final-stars').appendChild(s);
+    }
 
     function show(mood) {
       const m = messages[mood];
@@ -142,8 +179,19 @@
 
     function showHike() {
       hikeStep = 0;
+      noAttempts = 0;
       document.getElementById('home').style.display = 'none';
       document.getElementById('hike-card').classList.add('visible');
+      document.getElementById('hike-scene').style.display = 'flex';
+      document.getElementById('final-scene').classList.remove('show');
+      document.getElementById('proposal-view').style.display = 'block';
+      document.getElementById('yes-response').classList.remove('show');
+      const noBtn = document.getElementById('no-btn');
+      noBtn.style.display = 'inline-block';
+      noBtn.style.opacity = '1';
+      noBtn.style.fontSize = '16px';
+      noBtn.style.padding = '12px 32px';
+      noBtn.style.transform = 'translate(0,0)';
       renderHikeStep();
       window.scrollTo({ top: 0, behavior: 'smooth' });
     }
@@ -154,20 +202,59 @@
       document.getElementById('hike-emoji').textContent = s.emoji;
       document.getElementById('hike-title').textContent = s.title;
       document.getElementById('hike-text').innerHTML = s.text.replace(/\n/g, '<br>');
-      document.getElementById('hike-hearts').style.display = s.final ? 'block' : 'none';
-      document.getElementById('hike-note').style.display = s.final ? 'block' : 'none';
-      document.getElementById('hike-btn').style.display = s.final ? 'none' : 'inline-block';
       const prog = document.getElementById('hike-progress');
       prog.innerHTML = '';
-      hikeSteps.forEach((_, i) => {
+      for (let i = 0; i < hikeSteps.length + 1; i++) {
         const d = document.createElement('div');
         d.className = 'hike-dot' + (i === hikeStep ? ' active' : '');
         prog.appendChild(d);
-      });
+      }
     }
 
     function nextHike() {
-      if (hikeStep < hikeSteps.length - 1) { hikeStep++; renderHikeStep(); }
+      if (hikeStep < hikeSteps.length - 1) {
+        hikeStep++;
+        renderHikeStep();
+      } else {
+        document.getElementById('hike-scene').style.display = 'none';
+        document.getElementById('final-scene').classList.add('show');
+      }
+    }
+
+    function runAway() {
+      noAttempts++;
+      const x = (Math.random() - 0.5) * 160;
+      const y = (Math.random() - 0.5) * 80;
+      const noBtn = document.getElementById('no-btn');
+      noBtn.style.transform = 'translate(' + x + 'px, ' + y + 'px)';
+      if (noAttempts >= 3) { noBtn.style.opacity = '0.4'; noBtn.style.fontSize = '12px'; noBtn.style.padding = '8px 16px'; }
+      if (noAttempts >= 6) { noBtn.style.display = 'none'; }
+    }
+
+    function clickYes() {
+      launchConfetti();
+      setTimeout(() => {
+        document.getElementById('proposal-view').style.display = 'none';
+        document.getElementById('yes-response').classList.add('show');
+      }, 600);
+    }
+
+    function launchConfetti() {
+      const colors = ['#185FA5', '#B5D4F4', '#fff', '#85B7EB', '#f4c0d1', '#c45c8a', '#ffd700'];
+      const scene = document.getElementById('final-scene');
+      for (let i = 0; i < 80; i++) {
+        setTimeout(() => {
+          const c = document.createElement('div');
+          c.className = 'confetti-piece';
+          c.style.left = Math.random() * 100 + '%';
+          c.style.top = '0px';
+          c.style.background = colors[Math.floor(Math.random() * colors.length)];
+          c.style.animationDuration = (1.5 + Math.random()) + 's';
+          c.style.animationDelay = (Math.random() * 0.3) + 's';
+          scene.appendChild(c);
+          setTimeout(() => c.remove(), 3000);
+        }, i * 15);
+      }
     }
 
     function goBack() {
