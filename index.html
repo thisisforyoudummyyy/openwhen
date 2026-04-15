@@ -90,6 +90,7 @@
     <span class="card-emoji" id="msg-emoji"></span>
     <div class="card-title" id="msg-title"></div>
     <div class="card-text" id="msg-text"></div>
+    <img id="msg-image" src="" alt="" style="display:none; width:100%; border-radius:12px; margin-bottom:1rem;" />
     <button class="back-btn" onclick="goBack()">← Back</button>
   </div>
 
@@ -132,7 +133,7 @@
     const messages = {
       goodday: { emoji: "😆", title: "Open when you're having a good day", text: "the best is yet to come!! hehe i'm glad that today has been kind to you, i love your smile a lot,, so please keep smiling! \n\np.s. hehe you deserve days like this for the rest of your life!! i hope no guys notices how pretty you look when you smile zzz 💛" },
       accomplished: { emoji: "✨", title: "Open when you accomplished something", text: "HIII DUMMYYYY!! hehe whatever you accomplished, GOODJOBB I'M SO PROUD OF YOU!!! YOU KNOW THAT RIGHTTTT!!\n\np.s. hehe no matter how big or small the achievements, i'm still proud of you okie hehe dummyyy👻" },
-      aura: { emoji: "🤡", title: "Open when you're acting cool but we both know you're not (aura my ass)", text: "...acting nonchalant again haiss it's okay have your moment hehe but you and i know how you really are🤣 \n\np.s. I really believe this for you 💛" },
+      aura: { emoji: "🤡", title: "Open when you're acting cool but we both know you're not (aura my ass)", text: "...acting nonchalant again haiss it's okay have your moment hehe but you and i know how you really are🤣 \n\np.s. I really believe this for you 💛", image: "AHAH.jpg" },
       alone: { emoji: "🫂", title: "Open when you feel alone", text: "The best is yet to come.\n\np.s. I really believe this for you 💛" },
       procrastinate: { emoji: "🙃", title: "Open when you're procrastinating instead of doing work", text: "The best is yet to come.\n\np.s. I really believe this for you 💛" },
       bored: { emoji: "😈", title: "Open when you're bored and bothering people", text: "The best is yet to come.\n\np.s. I really believe this for you 💛" },
@@ -168,6 +169,13 @@
       document.getElementById('msg-emoji').textContent = m.emoji;
       document.getElementById('msg-title').textContent = m.title;
       document.getElementById('msg-text').innerHTML = m.text.replace(/\n/g, '<br>');
+      const imgEl = document.getElementById('msg-image');
+      if (m.image) {
+        imgEl.src = m.image;
+        imgEl.style.display = 'block';
+      } else {
+        imgEl.style.display = 'none';
+      }
       document.getElementById('home').style.display = 'none';
       document.getElementById('msg-card').classList.add('visible');
       window.scrollTo({ top: 0, behavior: 'smooth' });
