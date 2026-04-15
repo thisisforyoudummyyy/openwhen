@@ -31,9 +31,6 @@
     .hike-bg { position: absolute; inset: 0; background-size: cover; background-position: center; }
     .hike-overlay { position: absolute; inset: 0; background: linear-gradient(to top, rgba(0,0,0,0.78) 0%, rgba(0,0,0,0.1) 60%); }
     .hike-content { position: relative; z-index: 1; padding: 1.5rem; color: #fff; }
-    .hike-progress { display: flex; gap: 6px; margin-bottom: 1rem; }
-    .hike-dot { width: 8px; height: 8px; border-radius: 50%; background: rgba(255,255,255,0.35); transition: background 0.3s; }
-    .hike-dot.active { background: #fff; }
     .hike-scene-emoji { font-size: 36px; display: block; margin-bottom: 0.5rem; }
     .hike-title { font-size: 18px; font-weight: 700; margin-bottom: 0.5rem; color: #fff; }
     .hike-text { font-size: 14px; line-height: 1.75; color: rgba(255,255,255,0.9); margin-bottom: 1.25rem; }
@@ -101,7 +98,6 @@
       <div class="hike-bg" id="hike-bg"></div>
       <div class="hike-overlay"></div>
       <div class="hike-content">
-        <div class="hike-progress" id="hike-progress"></div>
         <span class="hike-scene-emoji" id="hike-emoji"></span>
         <div class="hike-title" id="hike-title"></div>
         <div class="hike-text" id="hike-text"></div>
@@ -202,13 +198,6 @@
       document.getElementById('hike-emoji').textContent = s.emoji;
       document.getElementById('hike-title').textContent = s.title;
       document.getElementById('hike-text').innerHTML = s.text.replace(/\n/g, '<br>');
-      const prog = document.getElementById('hike-progress');
-      prog.innerHTML = '';
-      for (let i = 0; i < hikeSteps.length + 1; i++) {
-        const d = document.createElement('div');
-        d.className = 'hike-dot' + (i === hikeStep ? ' active' : '');
-        prog.appendChild(d);
-      }
     }
 
     function nextHike() {
