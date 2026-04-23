@@ -59,6 +59,74 @@
     .yes-resp-text { font-size: 14px; color: rgba(255,255,255,0.85); line-height: 1.8; }
     .confetti-piece { position: absolute; width: 8px; height: 8px; border-radius: 2px; animation: fall 2s ease-in forwards; pointer-events: none; z-index: 10; }
     @keyframes fall { 0% { transform: translateY(-20px) rotate(0deg); opacity: 1; } 100% { transform: translateY(500px) rotate(720deg); opacity: 0; } }
+
+    /* SECRET CARD */
+    .secret-card { display: none; max-width: 540px; margin: 0 auto; background: #fff; border: 1.5px solid #f4c0d1; border-radius: 20px; padding: 2rem 1.5rem; }
+    .secret-card.visible { display: block; }
+    .secret-header-emoji { font-size: 40px; display: block; margin-bottom: 0.75rem; text-align: center; }
+    .secret-title { font-size: 12px; font-weight: 700; color: #d4537e; text-transform: uppercase; letter-spacing: 0.08em; margin-bottom: 0.5rem; text-align: center; }
+    .secret-subtitle { font-size: 14px; color: #888; line-height: 1.6; margin-bottom: 1.25rem; text-align: center; }
+    .secret-feed {
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+      min-height: 80px;
+      max-height: 320px;
+      overflow-y: auto;
+      background: #fff8fe;
+      border: 1.5px solid #f4c0d1;
+      border-radius: 14px;
+      padding: 12px;
+      margin-bottom: 12px;
+    }
+    .secret-empty { text-align: center; font-size: 13px; color: #ccc; padding: 2rem 0; }
+    .secret-bubble {
+      background: #fff0f6;
+      border: 1.5px solid #f4c0d1;
+      border-radius: 14px;
+      padding: 10px 13px;
+      font-size: 14px;
+      color: #3d3d3a;
+      line-height: 1.6;
+      word-break: break-word;
+      animation: bubbleIn 0.25s ease;
+    }
+    .secret-bubble .bubble-time { display: block; font-size: 11px; color: #ccc; margin-top: 5px; }
+    @keyframes bubbleIn { from { opacity: 0; transform: scale(0.95) translateY(4px); } to { opacity: 1; transform: none; } }
+    .secret-input-row { display: flex; gap: 8px; margin-bottom: 1.25rem; align-items: flex-end; }
+    .secret-input {
+      flex: 1;
+      border: 1.5px solid #f4c0d1;
+      border-radius: 12px;
+      padding: 10px 14px;
+      font-size: 14px;
+      font-family: inherit;
+      color: #2c2c2a;
+      outline: none;
+      resize: none;
+      min-height: 44px;
+      max-height: 120px;
+      overflow-y: auto;
+      background: #fff8fe;
+      transition: border-color 0.15s;
+    }
+    .secret-input:focus { border-color: #d4537e; }
+    .secret-send-btn {
+      background: #c45c8a;
+      border: none;
+      border-radius: 12px;
+      padding: 10px 16px;
+      color: #fff;
+      font-size: 14px;
+      cursor: pointer;
+      font-weight: 600;
+      white-space: nowrap;
+      transition: background 0.15s, transform 0.1s;
+    }
+    .secret-send-btn:hover { background: #a8456f; }
+    .secret-send-btn:active { transform: scale(0.96); }
+    .secret-send-btn:disabled { background: #e0a0bc; cursor: not-allowed; }
+    .secret-status { font-size: 12px; color: #ccc; text-align: center; margin-bottom: 8px; min-height: 16px; }
   </style>
 </head>
 <body>
@@ -86,6 +154,7 @@
       <button class="mood-btn" onclick="show('lost')"><span class="mood-emoji">😶‍🌫️</span><span class="mood-label">you feel lost</span></button>
       <button class="mood-btn" onclick="show('married')"><span class="mood-emoji">👰‍♀️</span><span class="mood-label">you're getting married today!!</span></button>
       <button class="mood-btn" onclick="show('graduate')"><span class="mood-emoji">🎓</span><span class="mood-label">you're graduating</span></button>
+      <button class="mood-btn" onclick="showSecret()"><span class="mood-emoji">🤫</span><span class="mood-label">you wanna share something you don't dare to say</span></button>
     </div>
     <div class="footer">hahaha sorry i made all this for fun,, i'll delete it when u're done reading okay HAHA</div>
   </div>
@@ -96,6 +165,22 @@
     <div class="card-text" id="msg-text"></div>
     <img id="msg-image" src="" alt="" style="display:none; width:100%; border-radius:12px; margin-bottom:1rem;" />
     <video id="msg-video" src="" controls style="display:none; width:100%; border-radius:12px; margin-bottom:1rem;"></video>
+    <button class="back-btn" onclick="goBack()">← Back</button>
+  </div>
+
+  <!-- SECRET CARD -->
+  <div class="secret-card" id="secret-card">
+    <span class="secret-header-emoji">🤫</span>
+    <div class="secret-title">things we don't dare to say</div>
+    <div class="secret-subtitle">anonymous, permanent, just between us 🤍<br>type whatever you want and let it live here</div>
+    <div class="secret-feed" id="secret-feed">
+      <div class="secret-empty" id="secret-loading">loading..</div>
+    </div>
+    <div class="secret-status" id="secret-status"></div>
+    <div class="secret-input-row">
+      <textarea class="secret-input" id="secret-input" placeholder="say something you haven't said out loud.." rows="1"></textarea>
+      <button class="secret-send-btn" id="secret-send-btn" onclick="sendSecret()">send 🤫</button>
+    </div>
     <button class="back-btn" onclick="goBack()">← Back</button>
   </div>
 
@@ -135,6 +220,11 @@
   </div>
 
   <script>
+    const BIN_ID = '69ea31b836566621a8e3cfb8';
+    const API_KEY = '$2a$10$EVyAxFNNl8RyXNUzvtwl/OfRFR22RuTM4IqoEnKn4NtIVaS3LNaYq';
+    const BIN_URL = 'https://api.jsonbin.io/v3/b/' + BIN_ID;
+    const HEADERS = { 'Content-Type': 'application/json', 'X-Master-Key': API_KEY };
+
     const messages = {
       goodday: { emoji: "😆", title: "Open when you're having a good day", text: "the best is yet to come!! hehe i'm glad that today has been kind to you, i love your smile a lot,, so please keep smiling! since you're having a good day,, hmm you should take a photo/video/tiktok and and and you know you knowww.. accidentally send it to <a href='https://t.me/bryanananananannanananannaanna' target='_blank' style='color:#c45c8a; font-weight:600; text-decoration:none;'>idkk</a> ahahah.\n\nokay bye stop reading this hahah go enjoy the rest of the day!!\n\np.s. hehe you deserve days like this for the rest of your life!! i hope no guys notices how pretty you look when you smile zzz 💛" },
       accomplished: { emoji: "✨", title: "Open when you accomplished something", text: "HIII DUMMYYYY!! hehe whatever you accomplished, GOODJOBB I'M SO PROUD OF YOU!!! YOU KNOW THAT RIGHTTTT!! hehe i hope you're proud of yourself toooo,, and and know that this is just the beginning ahah there's so much more coming for you and and i cannot wait for you to kill it every single time, and and i hope you can come back to this although it'll be the same stuff HAHAHAHAHAHAHAHA\n\np.s. hehe no matter how big or small the achievements, i'm still proud of you okie hehe dummyyy👻" },
@@ -150,7 +240,7 @@
       sad: { emoji: "😢", title: "Open when you're sad", text: "hi stupidhead,, what's keeping you down??? hehe i don't like it when you're sad and and if you don't tell anyone about it sooo this is me trying to be there whenever you are sad okieieie?🤪 hehe i wish i could teleport next to u and and just be there with u..  i know you're not gonna tell anyone, or or even tell me when you read this, but do whatever you need to let it out, cry if you have to okayy?? everything will be finee and i know it👻 \n\n and anddd whatever that is making you sad, it's valid okayy and don't feel like it's not important dummy hahah i'll take time off whatever i'm doing just to listen to you if you need someone to be there okayy??🤭 you're allowed to be sad sooo don't rush yourself to feel better by pretending!!\n\np.s. since you're mine until your boyfriend proposes, i love you lots hehe🐽 if you can't find anyone to talk to, you know where to <a href='https://t.me/bryanananananannanananannaanna' target='_blank' style='color:#c45c8a; font-weight:600; text-decoration:none;'>find me</a>🤍" },
       lost: { emoji: "🧭", title: "Open when you feel lost", text: "hehe welcome to my club!! i guess we are meant to be then hehe💙 sorry i just wanted to add the 'when you're sad' but it feels wrong to have odd numbers so deal with my ocd,, even more so now that you're mine for the time being🤪💙\n\n but hmm, if you ever find yourself needing this,\n\nfeeling lost doesn't mean you're in the wrong direction, it just means you're on your way there okieie? give it some time duckyyy🤭 you're a smarty pantss hehe i know that whatever choice you make is right!!😆i meaaaan just don't make any big decisions when you're tipsy cos you did admit to me that you're a dumb dog HEHE🐶🐶 drink some water and go to bed okeie think about it tomorrow morning dummy.\n\np.s. anywaysss, lost or not, you're still my dummy💙 or dumb dog in this case HEHEH🐶🐶woof woof" },
       married: { emoji: "👰‍♀️", title: "Open when you're getting married today!!", text: "JAENNEEEEE!? YOU'RE GETTING MARRIED!!! hehe CONGRATULATIONS DUMMYYYYY🥹🥹 i told you everything will work out just fine hehe..\n\ni hope he's everything you deserve and more!! and i hope he knows how lucky he is to have you forever🥲🥲zz i'm so happy for you darling hehe okay it's my last time calling you names ahhaha i'll let you off from now on\n\ni'm so happy for you Jaenne and you deserve the best love story there is hahah kayusrgbfa you can still come to me if you ever need it okay?🫣okmaybeushouldn'thahafucki'msorry\n\np.s.you don't have to invite me to the wedding, i cannot cry in front of you hehe but i bet you'll look soo fucking beautiful in white!!🤧😪please be happy for the rest of you life.. hehe for one last time.. I LOVE YOU LOTS JAENNE😊" },
-      graduate: { emoji: "🎓", title: "Open when you graduate", text: "WHAT THE FUCK?! WE ACTUALLY DID IT DUMMY HEHEHE although i already knew you would get here anyways hehe i'm so fucking proud of you my stupidheadddd!!!!\n\nhehe do you remember year 2 tri 2.. we started hanging out soooo much that trimester hehe it was honestly the best time the whole of my uni life, thank you so much for that!!💙💙i'm so ready for you to get rich now and and treat me good food hehe!!\n\ni hope that wherever life takes you after this, you'll be happy and doing whatever you love!! and and i'm not sure if we will have the time (mostly you cos you're so fucking popular zz) but i do hope we can meet up 1-2 times a year okiee hehe don't you fucking dare disappear on me ducky🤣\n\np.s.i told you you'd make it darling hehe🤪now go celebrate!!! you've earned it hehe i'm sooo fucking proud of you🐽you know i'm gonna fucking miss year 2 tri 2 my whole life right, i'll never forget the way i first noticed you in year 1 tri 2, and and the first time you talked to me in year 2 tri 1 hehe,, okay no more disturbing you i guess, go enjoy duckyyy🥺" },      
+      graduate: { emoji: "🎓", title: "Open when you graduate", text: "WHAT THE FUCK?! WE ACTUALLY DID IT DUMMY HEHEHE although i already knew you would get here anyways hehe i'm so fucking proud of you my stupidheadddd!!!!\n\nhehe do you remember year 2 tri 2.. we started hanging out soooo much that trimester hehe it was honestly the best time the whole of my uni life, thank you so much for that!!💙💙i'm so ready for you to get rich now and and treat me good food hehe!!\n\ni hope that wherever life takes you after this, you'll be happy and doing whatever you love!! and and i'm not sure if we will have the time (mostly you cos you're so fucking popular zz) but i do hope we can meet up 1-2 times a year okiee hehe don't you fucking dare disappear on me ducky🤣\n\np.s.i told you you'd make it darling hehe🤪now go celebrate!!! you've earned it hehe i'm sooo fucking proud of you🐽you know i'm gonna fucking miss year 2 tri 2 my whole life right, i'll never forget the way i first noticed you in year 1 tri 2, and and the first time you talked to me in year 2 tri 1 hehe,, okay no more disturbing you i guess, go enjoy duckyyy🥺" },
     };
 
     const hikeSteps = [
@@ -179,22 +269,108 @@
       document.getElementById('msg-title').textContent = m.title;
       document.getElementById('msg-text').innerHTML = m.text.replace(/\n/g, '<br>');
       const imgEl = document.getElementById('msg-image');
-      if (m.image) {
-        imgEl.src = m.image;
-        imgEl.style.display = 'block';
-      } else {
-        imgEl.style.display = 'none';
-      }
+      if (m.image) { imgEl.src = m.image; imgEl.style.display = 'block'; } else { imgEl.style.display = 'none'; }
       const vidEl = document.getElementById('msg-video');
-      if (m.video) {
-        vidEl.src = m.video;
-        vidEl.style.display = 'block';
-      } else {
-        vidEl.style.display = 'none';
-      }
+      if (m.video) { vidEl.src = m.video; vidEl.style.display = 'block'; } else { vidEl.style.display = 'none'; }
       document.getElementById('home').style.display = 'none';
       document.getElementById('msg-card').classList.add('visible');
       window.scrollTo({ top: 0, behavior: 'smooth' });
+    }
+
+    // ── JSONBIN SECRETS ──
+    function formatTime(ts) {
+      return new Date(ts).toLocaleDateString('en-SG', { day: 'numeric', month: 'short', year: 'numeric', hour: '2-digit', minute: '2-digit' });
+    }
+
+    function escapeHtml(str) {
+      return str.replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;');
+    }
+
+    function renderFeed(secrets) {
+      const feed = document.getElementById('secret-feed');
+      feed.innerHTML = '';
+      if (!secrets || secrets.length === 0) {
+        feed.innerHTML = '<div class="secret-empty">nothing here yet.. be the first to share something 🤫</div>';
+        return;
+      }
+      secrets.forEach(s => {
+        const bubble = document.createElement('div');
+        bubble.className = 'secret-bubble';
+        bubble.innerHTML = escapeHtml(s.text) + '<span class="bubble-time">' + formatTime(s.ts) + '</span>';
+        feed.appendChild(bubble);
+      });
+      feed.scrollTop = feed.scrollHeight;
+    }
+
+    async function loadSecrets() {
+      document.getElementById('secret-feed').innerHTML = '<div class="secret-empty">loading..</div>';
+      try {
+        const res = await fetch(BIN_URL + '/latest', { headers: { 'X-Master-Key': API_KEY } });
+        const data = await res.json();
+        const secrets = data.record.secrets || [];
+        renderFeed(secrets);
+      } catch (e) {
+        document.getElementById('secret-feed').innerHTML = '<div class="secret-empty">couldn\'t load messages 😢 check your connection!</div>';
+      }
+    }
+
+    async function sendSecret() {
+      const input = document.getElementById('secret-input');
+      const btn = document.getElementById('secret-send-btn');
+      const status = document.getElementById('secret-status');
+      const text = input.value.trim();
+      if (!text) return;
+
+      btn.disabled = true;
+      status.textContent = 'sending..';
+
+      try {
+        const res = await fetch(BIN_URL + '/latest', { headers: { 'X-Master-Key': API_KEY } });
+        const data = await res.json();
+        const secrets = data.record.secrets || [];
+        secrets.push({ text, ts: Date.now() });
+
+        await fetch(BIN_URL, {
+          method: 'PUT',
+          headers: HEADERS,
+          body: JSON.stringify({ secrets })
+        });
+
+        input.value = '';
+        input.style.height = 'auto';
+        status.textContent = '';
+        renderFeed(secrets);
+      } catch (e) {
+        status.textContent = 'failed to send 😢 try again!';
+      } finally {
+        btn.disabled = false;
+      }
+    }
+
+    async function clearSecrets() {
+      await fetch(BIN_URL, {
+        method: 'PUT',
+        headers: HEADERS,
+        body: JSON.stringify({ secrets: [] })
+      });
+      renderFeed([]);
+      console.log('secrets cleared!');
+    }
+
+    function showSecret() {
+      document.getElementById('home').style.display = 'none';
+      document.getElementById('secret-card').classList.add('visible');
+      loadSecrets();
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+
+      const input = document.getElementById('secret-input');
+      input.addEventListener('keydown', function(e) {
+        if (e.key === 'Enter' && !e.shiftKey) { e.preventDefault(); sendSecret(); }
+      });
+      input.addEventListener('input', function() {
+        this.style.height = 'auto';
+        this.style.height = Math.min(this.scrollHeight, 120) + 'px';
+      });
     }
 
     function showHike() {
@@ -225,13 +401,8 @@
     }
 
     function nextHike() {
-      if (hikeStep < hikeSteps.length - 1) {
-        hikeStep++;
-        renderHikeStep();
-      } else {
-        document.getElementById('hike-scene').style.display = 'none';
-        document.getElementById('final-scene').classList.add('show');
-      }
+      if (hikeStep < hikeSteps.length - 1) { hikeStep++; renderHikeStep(); }
+      else { document.getElementById('hike-scene').style.display = 'none'; document.getElementById('final-scene').classList.add('show'); }
     }
 
     function runAway() {
@@ -273,6 +444,7 @@
     function goBack() {
       document.getElementById('home').style.display = 'block';
       document.getElementById('msg-card').classList.remove('visible');
+      document.getElementById('secret-card').classList.remove('visible');
       document.getElementById('hike-card').classList.remove('visible');
       window.scrollTo({ top: 0, behavior: 'smooth' });
     }
