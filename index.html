@@ -156,7 +156,7 @@
       <button class="mood-btn" onclick="show('graduate')"><span class="mood-emoji">🎓</span><span class="mood-label">you're graduating</span></button>
       <button class="mood-btn" onclick="showSecret()"><span class="mood-emoji">😘</span><span class="mood-label">you wanna share something you don't dare to say</span></button>
     </div>
-    <div class="footer">and then there's one more thing💙</div>
+    <div class="footer" onclick="showSecret2()" style="cursor:pointer;">and then there's one more thing💙</div>
   </div>
 
   <div class="message-card" id="msg-card">
@@ -182,6 +182,13 @@
       <button class="secret-send-btn" id="secret-send-btn" onclick="sendSecret()">send 🤫</button>
     </div>
     <button class="back-btn" onclick="goBack()">← Back</button>
+  </div>
+
+  <div class="secret2-card" id="secret2-card" style="display:none; max-width:540px; margin:0 auto; background:#fff; border:1.5px solid #f4c0d1; border-radius:20px; padding:2rem 1.5rem;">
+  <div style="font-size:40px; text-align:center; margin-bottom:1rem;">💙</div>
+  <div style="font-size:12px; font-weight:700; color:#d4537e; text-transform:uppercase; letter-spacing:0.08em; margin-bottom:0.75rem; text-align:center;">what i like about you</div>
+  <div style="font-size:16px; color:#3d3d3a; line-height:1.85; margin-bottom:1.5rem;">YOUR CONTENT HERE</div>
+  <button class="back-btn" onclick="goBack()">← Back</button>
   </div>
 
   <div class="hike-card" id="hike-card">
@@ -447,7 +454,14 @@
       document.getElementById('secret-card').classList.remove('visible');
       document.getElementById('hike-card').classList.remove('visible');
       window.scrollTo({ top: 0, behavior: 'smooth' });
+      document.getElementById('secret2-card').style.display = 'none';
     }
+
+    function showSecret2() {
+  document.getElementById('home').style.display = 'none';
+  document.getElementById('secret2-card').style.display = 'block';
+  window.scrollTo({ top: 0, behavior: 'smooth' });
+}
   </script>
 
 </body>
