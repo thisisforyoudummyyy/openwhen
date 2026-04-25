@@ -154,9 +154,8 @@
       <button class="mood-btn" onclick="show('lost')"><span class="mood-emoji">😶‍🌫️</span><span class="mood-label">you feel lost</span></button>
       <button class="mood-btn" onclick="show('married')"><span class="mood-emoji">👰‍♀️</span><span class="mood-label">you're getting married today!!</span></button>
       <button class="mood-btn" onclick="show('graduate')"><span class="mood-emoji">🎓</span><span class="mood-label">you're graduating</span></button>
-      <button class="mood-btn" onclick="showSecret()"><span class="mood-emoji">😘</span><span class="mood-label">you wanna share something you don't dare to say</span></button>
     </div>
-    <div class="footer" onclick="showSecret2()" style="cursor:pointer;">and then there's one more thing💙</div>
+    <div class="footer" onclick="showFooterPage()" style="cursor:pointer;">and then there's one more thing💙</div>
   </div>
 
   <div class="message-card" id="msg-card">
@@ -168,28 +167,27 @@
     <button class="back-btn" onclick="goBack()">← Back</button>
   </div>
 
-  <!-- SECRET CARD -->
-  <div class="secret-card" id="secret-card">
-    <span class="secret-header-emoji">🤫</span>
-    <div class="secret-title">things we don't dare to say</div>
-    <div class="secret-subtitle">just between us🤍<br>u can say whatever you want and let it live here hehe💙💙</div>
-    <div class="secret-feed" id="secret-feed">
-      <div class="secret-empty" id="secret-loading">loading..</div>
+  <div id="footer-page" style="display:none; max-width:540px; margin:0 auto;">
+  <div style="background:#fff; border:1.5px solid #f4c0d1; border-radius:20px; padding:2rem 1.5rem; margin-bottom:1.5rem;">
+    <span style="font-size:40px; display:block; text-align:center; margin-bottom:0.75rem;">🤫</span>
+    <div style="font-size:12px; font-weight:700; color:#d4537e; text-transform:uppercase; letter-spacing:0.08em; margin-bottom:0.5rem; text-align:center;">things we don't dare to say</div>
+    <div style="font-size:14px; color:#888; line-height:1.6; margin-bottom:1.25rem; text-align:center;">just between us🤍<br>u can say whatever you want and let it live here hehe💙💙</div>
+    <div class="secret-feed" id="secret-feed2" style="display:flex; flex-direction:column; gap:8px; min-height:80px; max-height:320px; overflow-y:auto; background:#fff8fe; border:1.5px solid #f4c0d1; border-radius:14px; padding:12px; margin-bottom:12px;">
+      <div class="secret-empty">loading..</div>
     </div>
-    <div class="secret-status" id="secret-status"></div>
+    <div class="secret-status" id="secret-status2"></div>
     <div class="secret-input-row">
-      <textarea class="secret-input" id="secret-input" placeholder="Type here!!" rows="1"></textarea>
-      <button class="secret-send-btn" id="secret-send-btn" onclick="sendSecret()">send 🤫</button>
+      <textarea class="secret-input" id="secret-input2" placeholder="Type here!!" rows="1"></textarea>
+      <button class="secret-send-btn" id="secret-send-btn2" onclick="sendSecret2()">send 🤫</button>
     </div>
-    <button class="back-btn" onclick="goBack()">← Back</button>
   </div>
-
-  <div class="secret2-card" id="secret2-card" style="display:none; max-width:540px; margin:0 auto; background:#fff; border:1.5px solid #f4c0d1; border-radius:20px; padding:2rem 1.5rem;">
-  <div style="font-size:40px; text-align:center; margin-bottom:1rem;">💙</div>
-  <div style="font-size:12px; font-weight:700; color:#d4537e; text-transform:uppercase; letter-spacing:0.08em; margin-bottom:0.75rem; text-align:center;">what i like about you</div>
-  <div style="font-size:16px; color:#3d3d3a; line-height:1.85; margin-bottom:1.5rem;">25/04/2026:<br>i like you because you treat everyone very nice, i like you because everytime you smile you just idk.. brighten up my day, i like you because ure so secure with urself, i like you because i think we vibe really well(idk haha to me only maybee), i like you because ure so troll, i like you because we can talk for hours and like not get bored (dont really happen to me,, so maybe not so special to u HAHA), i like you because ure so positive(?) haha idk u acting or what la so if ure not then oops, i like you because even though you dont have to, you still cared when i was angry for some dumb reasons or sad. i like you because you remember all the small things (good and bad la hahah but hehe), i like you because you make everything more fun (ik im a quiet person, so thank you so much for always talking,, dont blame urself for yapping hehe because i love it)<br><br>apart from those,, there are moments where i just cjsjsnxn uk.. hahahah the first time we walked, the first time we called until really late to study tgt, the first time i held ur hands, the first time we hugged, the first time we kissed... the first time u slept on my lap,, i looked at u and thought i want to take care of you my whole life, i want you to be happy no matter what haha...<br><br>im so sorry jaenne im tearing up typing this knowing today is our last day doing stupid shit tgt ahahha.. hehe i promise i'll stop this nonsense alright, just let me be there for you when you need it okayy?? i promise i'll just be there as a listening ear.. anyways you know where to spawn me hehe!! treat me as ur ur spare tyre HAHA you can use me when you need me and nothing else okeie? HAHA<br><br>please allow me to still take care of you whenever i can,, u can spawn me anytime when you need someone to throw everything at<br><br>...okayyy i think i gonna break down if i continue typing,, but you get me rightt haha😭hehe whatever is in here stays in here OKAY!!!? i know i'm not supposed to say it anymore after today but i love you lots dummy💙</div>
+  <div style="background:#fff; border:1.5px solid #f4c0d1; border-radius:20px; padding:2rem 1.5rem; margin-bottom:1.5rem;">
+    <div style="font-size:40px; text-align:center; margin-bottom:1rem;">💙</div>
+    <div style="font-size:12px; font-weight:700; color:#d4537e; text-transform:uppercase; letter-spacing:0.08em; margin-bottom:0.75rem; text-align:center;">what i like about you</div>
+    <div style="font-size:16px; color:#3d3d3a; line-height:1.85; margin-bottom:1.5rem;">25/04/2026:<br><br>i like you because you treat everyone very nice, i like you because everytime you smile you just idk.. brighten up my day, i like you because ure so secure with urself, i like you because i think we vibe really well(idk haha to me only maybee), i like you because ure so troll, i like you because we can talk for hours and like not get bored (dont really happen to me,, so maybe not so special to u HAHA), i like you because ure so positive(?) haha idk u acting or what la so if ure not then oops, i like you because even though you dont have to, you still cared when i was angry for some dumb reasons or sad. i like you because you remember all the small things (good and bad la hahah but hehe), i like you because you make everything more fun (ik im a quiet person, so thank you so much for always talking,, dont blame urself for yapping hehe because i love it)<br><br>apart from those,, there are moments where i just cjsjsnxn uk.. hahahah the first time we walked, the first time we called until really late to study tgt, the first time i held ur hands, the first time we hugged, the first time we kissed... the first time u slept on my lap,, i looked at u and thought i want to take care of you my whole life, i want you to be happy no matter what haha...<br><br>im so sorry jaenne im tearing up typing this knowing today is our last day doing stupid shit tgt ahahha.. hehe i promise i'll stop this nonsense alright, just let me be there for you when you need it okayy?? i promise i'll just be there as a listening ear.. anyways you know where to spawn me hehe!! treat me as ur ur spare tyre HAHA you can use me when you need me and nothing else okeie? HAHA<br><br>please allow me to still take care of you whenever i can,, u can spawn me anytime when you need someone to throw everything at<br><br>...okayyy i think i gonna break down if i continue typing,, but you get me rightt haha😭hehe whatever is in here stays in here OKAY!!!? i know i'm not supposed to say it anymore after today but i love you lots dummy💙</div>
+  </div>
   <button class="back-btn" onclick="goBack()">← Back</button>
-  </div>
+</div>
 
   <div class="hike-card" id="hike-card">
     <div class="hike-scene" id="hike-scene">
@@ -293,93 +291,6 @@
       return str.replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;');
     }
 
-    function renderFeed(secrets) {
-      const feed = document.getElementById('secret-feed');
-      feed.innerHTML = '';
-      if (!secrets || secrets.length === 0) {
-        feed.innerHTML = '<div class="secret-empty">nothing here yet.. be the first to share something 🤫</div>';
-        return;
-      }
-      secrets.forEach(s => {
-        const bubble = document.createElement('div');
-        bubble.className = 'secret-bubble';
-        bubble.innerHTML = escapeHtml(s.text) + '<span class="bubble-time">' + formatTime(s.ts) + '</span>';
-        feed.appendChild(bubble);
-      });
-      feed.scrollTop = feed.scrollHeight;
-    }
-
-    async function loadSecrets() {
-      document.getElementById('secret-feed').innerHTML = '<div class="secret-empty">loading..</div>';
-      try {
-        const res = await fetch(BIN_URL + '/latest', { headers: { 'X-Master-Key': API_KEY } });
-        const data = await res.json();
-        const secrets = data.record.secrets || [];
-        renderFeed(secrets);
-      } catch (e) {
-        document.getElementById('secret-feed').innerHTML = '<div class="secret-empty">couldn\'t load messages 😢 check your connection!</div>';
-      }
-    }
-
-    async function sendSecret() {
-      const input = document.getElementById('secret-input');
-      const btn = document.getElementById('secret-send-btn');
-      const status = document.getElementById('secret-status');
-      const text = input.value.trim();
-      if (!text) return;
-
-      btn.disabled = true;
-      status.textContent = 'sending..';
-
-      try {
-        const res = await fetch(BIN_URL + '/latest', { headers: { 'X-Master-Key': API_KEY } });
-        const data = await res.json();
-        const secrets = data.record.secrets || [];
-        secrets.push({ text, ts: Date.now() });
-
-        await fetch(BIN_URL, {
-          method: 'PUT',
-          headers: HEADERS,
-          body: JSON.stringify({ secrets })
-        });
-
-        input.value = '';
-        input.style.height = 'auto';
-        status.textContent = '';
-        renderFeed(secrets);
-      } catch (e) {
-        status.textContent = 'failed to send 😢 try again!';
-      } finally {
-        btn.disabled = false;
-      }
-    }
-
-    async function clearSecrets() {
-      await fetch(BIN_URL, {
-        method: 'PUT',
-        headers: HEADERS,
-        body: JSON.stringify({ secrets: [] })
-      });
-      renderFeed([]);
-      console.log('secrets cleared!');
-    }
-
-    function showSecret() {
-      document.getElementById('home').style.display = 'none';
-      document.getElementById('secret-card').classList.add('visible');
-      loadSecrets();
-      window.scrollTo({ top: 0, behavior: 'smooth' });
-
-      const input = document.getElementById('secret-input');
-      input.addEventListener('keydown', function(e) {
-        if (e.key === 'Enter' && !e.shiftKey) { e.preventDefault(); sendSecret(); }
-      });
-      input.addEventListener('input', function() {
-        this.style.height = 'auto';
-        this.style.height = Math.min(this.scrollHeight, 120) + 'px';
-      });
-    }
-
     function showHike() {
       hikeStep = 0;
       noAttempts = 0;
@@ -451,16 +362,81 @@
     function goBack() {
       document.getElementById('home').style.display = 'block';
       document.getElementById('msg-card').classList.remove('visible');
-      document.getElementById('secret-card').classList.remove('visible');
       document.getElementById('hike-card').classList.remove('visible');
       window.scrollTo({ top: 0, behavior: 'smooth' });
-      document.getElementById('secret2-card').style.display = 'none';
+      document.getElementById('footer-page').style.display = 'none';
     }
 
-    function showSecret2() {
+    function showFooterPage() {
   document.getElementById('home').style.display = 'none';
-  document.getElementById('secret2-card').style.display = 'block';
+  document.getElementById('footer-page').style.display = 'block';
+  loadSecrets2();
   window.scrollTo({ top: 0, behavior: 'smooth' });
+  const input = document.getElementById('secret-input2');
+  input.addEventListener('keydown', function(e) {
+    if (e.key === 'Enter' && !e.shiftKey) { e.preventDefault(); sendSecret2(); }
+  });
+  input.addEventListener('input', function() {
+    this.style.height = 'auto';
+    this.style.height = Math.min(this.scrollHeight, 120) + 'px';
+  });
+}
+
+async function loadSecrets2() {
+  document.getElementById('secret-feed2').innerHTML = '<div class="secret-empty">loading..</div>';
+  try {
+    const res = await fetch(BIN_URL + '/latest', { headers: { 'X-Master-Key': API_KEY } });
+    const data = await res.json();
+    const secrets = data.record.secrets || [];
+    const feed = document.getElementById('secret-feed2');
+    feed.innerHTML = '';
+    if (!secrets || secrets.length === 0) {
+      feed.innerHTML = '<div class="secret-empty">nothing here yet.. be the first to share something 🤫</div>';
+      return;
+    }
+    secrets.forEach(s => {
+      const bubble = document.createElement('div');
+      bubble.className = 'secret-bubble';
+      bubble.innerHTML = escapeHtml(s.text) + '<span class="bubble-time">' + formatTime(s.ts) + '</span>';
+      feed.appendChild(bubble);
+    });
+    feed.scrollTop = feed.scrollHeight;
+  } catch (e) {
+    document.getElementById('secret-feed2').innerHTML = '<div class="secret-empty">couldn\'t load messages 😢</div>';
+  }
+}
+
+async function sendSecret2() {
+  const input = document.getElementById('secret-input2');
+  const btn = document.getElementById('secret-send-btn2');
+  const status = document.getElementById('secret-status2');
+  const text = input.value.trim();
+  if (!text) return;
+  btn.disabled = true;
+  status.textContent = 'sending..';
+  try {
+    const res = await fetch(BIN_URL + '/latest', { headers: { 'X-Master-Key': API_KEY } });
+    const data = await res.json();
+    const secrets = data.record.secrets || [];
+    secrets.push({ text, ts: Date.now() });
+    await fetch(BIN_URL, { method: 'PUT', headers: HEADERS, body: JSON.stringify({ secrets }) });
+    input.value = '';
+    input.style.height = 'auto';
+    status.textContent = '';
+    const feed = document.getElementById('secret-feed2');
+    feed.innerHTML = '';
+    secrets.forEach(s => {
+      const bubble = document.createElement('div');
+      bubble.className = 'secret-bubble';
+      bubble.innerHTML = escapeHtml(s.text) + '<span class="bubble-time">' + formatTime(s.ts) + '</span>';
+      feed.appendChild(bubble);
+    });
+    feed.scrollTop = feed.scrollHeight;
+  } catch (e) {
+    status.textContent = 'failed to send 😢 try again!';
+  } finally {
+    btn.disabled = false;
+  }
 }
   </script>
 
