@@ -200,44 +200,38 @@
 
         <!-- EXAMPLE PLACEHOLDERS — replace src with your real files -->
 
-        <div class="gallery-item" onclick="openLightbox('u1.jpg', 'img')">
+        <div class="gallery-item" onclick="openLightbox('u1.jpg', 'img', 'your caption here 🤍')">
           <img src="u1.jpg" alt="" />
-          <div class="gallery-caption">🤍</div>
         </div>
 
-        <div class="gallery-item" onclick="openLightbox('us.jpg', 'img')">
+        <div class="gallery-item" onclick="openLightbox('us.jpg', 'img', 'your caption here 🤍')">
           <img src="us.jpg" alt="" />
-          <div class="gallery-caption">🤍</div>
         </div>
 
-        <div class="gallery-item" onclick="openLightbox('video1.MP4', 'video')">
+        <div class="gallery-item" onclick="openLightbox('video1.MP4', 'video', 'your caption here 🤍')">
           <video src="video1.MP4" muted playsinline preload="metadata"></video>
-          <div class="play-icon">▶️</div>
-          <div class="gallery-caption">🤍</div>
+          <div class="play-icon">🥲</div>
         </div>
 
-        <div class="gallery-item" onclick="openLightbox('video2.MP4', 'video')">
+        <div class="gallery-item" onclick="openLightbox('video2.MP4', 'video', 'your caption here 🤍')">
           <video src="video2.MP4" muted playsinline preload="metadata"></video>
-          <div class="play-icon">▶️</div>
-          <div class="gallery-caption">🤍</div>
+          <div class="play-icon">🥲</div>
         </div>
 
-        <div class="gallery-item" onclick="openLightbox('video3.MP4', 'video')">
+        <div class="gallery-item" onclick="openLightbox('video3.MP4', 'video', 'your caption here 🤍')">
           <video src="video3.MP4" muted playsinline preload="metadata"></video>
-          <div class="play-icon">▶️</div>
-          <div class="gallery-caption">🤍</div>
+          <div class="play-icon">🥲</div>
         </div>
 
-        <div class="gallery-item" onclick="openLightbox('video4.MP4', 'video')">
+        <div class="gallery-item" onclick="openLightbox('video4.MP4', 'video', 'your caption here 🤍')">
           <video src="video4.MP4" muted playsinline preload="metadata"></video>
-          <div class="play-icon">▶️</div>
-          <div class="gallery-caption">🤍</div>
+          <div class="play-icon">🥲</div>
         </div>
 
         <!-- ↑↑↑ ADD MORE ABOVE HERE ↑↑↑ -->
 
       </div>
-      <p class="gallery-add-note">add more photos by editing the gallery-grid section in the html 🤍</p>
+      <p class="gallery-add-note">i wish you send me more photos/videos so i can spend more time here all the time hehe🤍</p>
     </div>
 
     <!-- JOURNAL TAB -->
@@ -340,24 +334,28 @@ just triple-tap the 💌 at the top to get back here anytime.</div>
     }
 
     // ── LIGHTBOX ──
-    function openLightbox(src, type) {
-      const lb = document.getElementById('lightbox');
-      const img = document.getElementById('lightbox-img');
-      const vid = document.getElementById('lightbox-video');
-      if (type === 'img') {
-        img.src = src; img.style.display = 'block';
-        vid.style.display = 'none'; vid.pause && vid.pause();
-      } else {
-        vid.src = src; vid.style.display = 'block';
-        img.style.display = 'none';
-      }
-      lb.classList.add('open');
-    }
-    function closeLightbox() {
-      document.getElementById('lightbox').classList.remove('open');
-      const vid = document.getElementById('lightbox-video');
-      vid.pause && vid.pause();
-    }
+function openLightbox(src, type, caption) {
+  const lb = document.getElementById('lightbox');
+  const img = document.getElementById('lightbox-img');
+  const vid = document.getElementById('lightbox-video');
+  if (type === 'img') {
+    img.src = src; img.style.display = 'block';
+    vid.style.display = 'none'; vid.pause && vid.pause();
+  } else {
+    vid.src = src; vid.style.display = 'block';
+    img.style.display = 'none';
+  }
+  // show caption
+  let capEl = document.getElementById('lightbox-caption');
+  if (!capEl) {
+    capEl = document.createElement('div');
+    capEl.id = 'lightbox-caption';
+    capEl.style.cssText = 'color:#fff; font-size:13px; text-align:center; margin-top:10px; opacity:0.8;';
+    lb.appendChild(capEl);
+  }
+  capEl.textContent = caption || '';
+  lb.classList.add('open');
+}
 
     const messages = {
       goodday: { emoji: "😆", title: "Open when you're having a good day", text: "the best is yet to come!! hehe i'm glad that today has been kind to you, i love your smile a lot,, so please keep smiling! since you're having a good day,, hmm you should take a photo/video/tiktok and and and you know you knowww.. accidentally send it to <a href='https://t.me/bryanananananannanananannaanna' target='_blank' style='color:#c45c8a; font-weight:600; text-decoration:none;'>idkk</a> ahahah.\n\nokay bye stop reading this hahah go enjoy the rest of the day!!\n\np.s. hehe you deserve days like this for the rest of your life!! i hope no guys notices how pretty you look when you smile zzz 💛" },
