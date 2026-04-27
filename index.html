@@ -577,6 +577,14 @@ function openLightbox(src, type, caption) {
       await fetch(BIN_URL, { method: 'PUT', headers: HEADERS, body: JSON.stringify({ secrets: [] }) });
       console.log('secrets cleared!');
     }
+
+    function closeLightbox() {
+  const lb = document.getElementById('lightbox');
+  const vid = document.getElementById('lightbox-video');
+  lb.classList.remove('open');
+  vid.pause && vid.pause();
+  vid.src = '';
+}
   </script>
 
 </body>
