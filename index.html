@@ -8,7 +8,7 @@
     * { box-sizing: border-box; margin: 0; padding: 0; }
     body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif; background: #fff8fe; color: #2c2c2a; min-height: 100vh; padding: 2rem 1rem; }
     .header { text-align: center; margin-bottom: 2rem; }
-    .header .top-emoji { font-size: 48px; display: block; margin-bottom: 0.75rem; }
+    .header .top-emoji { font-size: 48px; display: block; margin-bottom: 0.75rem; cursor: default; user-select: none; }
     .header h1 { font-size: 26px; font-weight: 600; color: #c45c8a; margin-bottom: 0.5rem; }
     .header p { font-size: 15px; color: #888; line-height: 1.7; }
     .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(140px, 1fr)); gap: 12px; max-width: 540px; margin: 0 auto 2rem; }
@@ -24,7 +24,7 @@
     .card-text { font-size: 16px; color: #3d3d3a; line-height: 1.85; margin-bottom: 1.5rem; }
     .back-btn { background: none; border: 1.5px solid #f4c0d1; border-radius: 10px; padding: 10px 20px; font-size: 13px; color: #993556; cursor: pointer; font-weight: 500; transition: background 0.15s; }
     .back-btn:hover { background: #fff0f6; }
-    .footer { text-align: center; margin-top: 2.5rem; font-size: 13px; color: #bbb; }
+    .footer { text-align: center; margin-top: 2.5rem; font-size: 13px; color: #bbb; cursor: pointer; }
     .hike-card { display: none; max-width: 540px; margin: 0 auto; border-radius: 20px; overflow: hidden; border: 1.5px solid #B5D4F4; }
     .hike-card.visible { display: block; }
     .hike-scene { position: relative; min-height: 460px; display: flex; flex-direction: column; justify-content: flex-end; }
@@ -66,74 +66,65 @@
     .secret-header-emoji { font-size: 40px; display: block; margin-bottom: 0.75rem; text-align: center; }
     .secret-title { font-size: 12px; font-weight: 700; color: #d4537e; text-transform: uppercase; letter-spacing: 0.08em; margin-bottom: 0.5rem; text-align: center; }
     .secret-subtitle { font-size: 14px; color: #888; line-height: 1.6; margin-bottom: 1.25rem; text-align: center; }
-    .secret-feed {
-      display: flex;
-      flex-direction: column;
-      gap: 8px;
-      min-height: 80px;
-      max-height: 320px;
-      overflow-y: auto;
-      background: #fff8fe;
-      border: 1.5px solid #f4c0d1;
-      border-radius: 14px;
-      padding: 12px;
-      margin-bottom: 12px;
-    }
+    .secret-feed { display: flex; flex-direction: column; gap: 8px; min-height: 80px; max-height: 320px; overflow-y: auto; background: #fff8fe; border: 1.5px solid #f4c0d1; border-radius: 14px; padding: 12px; margin-bottom: 12px; }
     .secret-empty { text-align: center; font-size: 13px; color: #ccc; padding: 2rem 0; }
-    .secret-bubble {
-      background: #fff0f6;
-      border: 1.5px solid #f4c0d1;
-      border-radius: 14px;
-      padding: 10px 13px;
-      font-size: 14px;
-      color: #3d3d3a;
-      line-height: 1.6;
-      word-break: break-word;
-      animation: bubbleIn 0.25s ease;
-    }
+    .secret-bubble { background: #fff0f6; border: 1.5px solid #f4c0d1; border-radius: 14px; padding: 10px 13px; font-size: 14px; color: #3d3d3a; line-height: 1.6; word-break: break-word; animation: bubbleIn 0.25s ease; }
     .secret-bubble .bubble-time { display: block; font-size: 11px; color: #ccc; margin-top: 5px; }
     @keyframes bubbleIn { from { opacity: 0; transform: scale(0.95) translateY(4px); } to { opacity: 1; transform: none; } }
     .secret-input-row { display: flex; gap: 8px; margin-bottom: 1.25rem; align-items: flex-end; }
-    .secret-input {
-      flex: 1;
-      border: 1.5px solid #f4c0d1;
-      border-radius: 12px;
-      padding: 10px 14px;
-      font-size: 14px;
-      font-family: inherit;
-      color: #2c2c2a;
-      outline: none;
-      resize: none;
-      min-height: 44px;
-      max-height: 120px;
-      overflow-y: auto;
-      background: #fff8fe;
-      transition: border-color 0.15s;
-    }
+    .secret-input { flex: 1; border: 1.5px solid #f4c0d1; border-radius: 12px; padding: 10px 14px; font-size: 14px; font-family: inherit; color: #2c2c2a; outline: none; resize: none; min-height: 44px; max-height: 120px; overflow-y: auto; background: #fff8fe; transition: border-color 0.15s; }
     .secret-input:focus { border-color: #d4537e; }
-    .secret-send-btn {
-      background: #c45c8a;
-      border: none;
-      border-radius: 12px;
-      padding: 10px 16px;
-      color: #fff;
-      font-size: 14px;
-      cursor: pointer;
-      font-weight: 600;
-      white-space: nowrap;
-      transition: background 0.15s, transform 0.1s;
-    }
+    .secret-send-btn { background: #c45c8a; border: none; border-radius: 12px; padding: 10px 16px; color: #fff; font-size: 14px; cursor: pointer; font-weight: 600; white-space: nowrap; transition: background 0.15s, transform 0.1s; }
     .secret-send-btn:hover { background: #a8456f; }
     .secret-send-btn:active { transform: scale(0.96); }
     .secret-send-btn:disabled { background: #e0a0bc; cursor: not-allowed; }
     .secret-status { font-size: 12px; color: #ccc; text-align: center; margin-bottom: 8px; min-height: 16px; }
+
+    /* ── MINE PAGE ── */
+    #mine-page { display: none; max-width: 540px; margin: 0 auto; padding-bottom: 3rem; }
+    .mine-header { text-align: center; margin-bottom: 2rem; padding-top: 0.5rem; }
+    .mine-header-emoji { font-size: 40px; display: block; margin-bottom: 0.75rem; }
+    .mine-header h2 { font-size: 22px; font-weight: 700; color: #c45c8a; margin-bottom: 0.4rem; }
+    .mine-header p { font-size: 13px; color: #bbb; }
+
+    /* tabs */
+    .mine-tabs { display: flex; gap: 8px; justify-content: center; margin-bottom: 1.5rem; }
+    .mine-tab { background: #fff; border: 1.5px solid #f4c0d1; border-radius: 20px; padding: 8px 20px; font-size: 13px; font-weight: 600; color: #993556; cursor: pointer; transition: background 0.15s, border-color 0.15s; }
+    .mine-tab.active { background: #c45c8a; border-color: #c45c8a; color: #fff; }
+    .mine-tab:hover:not(.active) { background: #fff0f6; }
+
+    /* gallery */
+    #gallery-tab { display: block; }
+    #journal-tab { display: none; }
+    .gallery-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 10px; }
+    .gallery-item { border-radius: 14px; overflow: hidden; position: relative; background: #f4c0d1; aspect-ratio: 1/1; cursor: pointer; }
+    .gallery-item img, .gallery-item video { width: 100%; height: 100%; object-fit: cover; display: block; transition: transform 0.3s; }
+    .gallery-item:hover img, .gallery-item:hover video { transform: scale(1.04); }
+    .gallery-item .gallery-caption { position: absolute; bottom: 0; left: 0; right: 0; background: linear-gradient(to top, rgba(0,0,0,0.6), transparent); color: #fff; font-size: 11px; padding: 8px 10px 6px; opacity: 0; transition: opacity 0.2s; }
+    .gallery-item:hover .gallery-caption { opacity: 1; }
+    .gallery-item .play-icon { position: absolute; top: 50%; left: 50%; transform: translate(-50%,-50%); font-size: 28px; pointer-events: none; }
+    .gallery-add-note { text-align: center; font-size: 12px; color: #ddd; margin-top: 1rem; font-style: italic; }
+
+    /* lightbox */
+    .lightbox { display: none; position: fixed; inset: 0; background: rgba(0,0,0,0.9); z-index: 999; justify-content: center; align-items: center; padding: 1rem; }
+    .lightbox.open { display: flex; }
+    .lightbox img, .lightbox video { max-width: 100%; max-height: 90vh; border-radius: 12px; object-fit: contain; }
+    .lightbox-close { position: absolute; top: 16px; right: 20px; color: #fff; font-size: 28px; cursor: pointer; line-height: 1; }
+
+    /* journal */
+    .journal-entry { background: #fff; border: 1.5px solid #f4c0d1; border-radius: 18px; padding: 1.5rem; margin-bottom: 1rem; position: relative; }
+    .journal-date { font-size: 11px; font-weight: 700; color: #d4537e; text-transform: uppercase; letter-spacing: 0.08em; margin-bottom: 0.5rem; }
+    .journal-title { font-size: 16px; font-weight: 700; color: #2c2c2a; margin-bottom: 0.75rem; }
+    .journal-text { font-size: 14px; color: #555; line-height: 1.85; white-space: pre-wrap; }
+    .journal-mood { position: absolute; top: 1.25rem; right: 1.25rem; font-size: 22px; }
+    .journal-empty { text-align: center; font-size: 14px; color: #ccc; padding: 3rem 0; }
   </style>
 </head>
 <body>
 
   <div id="home">
     <div class="header">
-      <span class="top-emoji">💌</span>
+      <span class="top-emoji" id="secret-tap-emoji">💌</span>
       <h1>Open when...</h1>
       <p>happy birthday dummy!! hehe sorry idk what to get you <br> sooo i made this!! okay boring, fuck you</p>
     </div>
@@ -168,26 +159,123 @@
   </div>
 
   <div id="footer-page" style="display:none; max-width:540px; margin:0 auto;">
-  <div style="background:#fff; border:1.5px solid #f4c0d1; border-radius:20px; padding:2rem 1.5rem; margin-bottom:1.5rem;">
-    <span style="font-size:40px; display:block; text-align:center; margin-bottom:0.75rem;">🤫</span>
-    <div style="font-size:12px; font-weight:700; color:#d4537e; text-transform:uppercase; letter-spacing:0.08em; margin-bottom:0.5rem; text-align:center;">things we don't dare to say</div>
-    <div style="font-size:14px; color:#888; line-height:1.6; margin-bottom:1.25rem; text-align:center;">just between us🤍<br>u can say whatever you want and let it live here hehe💙💙</div>
-    <div class="secret-feed" id="secret-feed2" style="display:flex; flex-direction:column; gap:8px; min-height:80px; max-height:320px; overflow-y:auto; background:#fff8fe; border:1.5px solid #f4c0d1; border-radius:14px; padding:12px; margin-bottom:12px;">
-      <div class="secret-empty">loading..</div>
+    <div style="background:#fff; border:1.5px solid #f4c0d1; border-radius:20px; padding:2rem 1.5rem; margin-bottom:1.5rem;">
+      <span style="font-size:40px; display:block; text-align:center; margin-bottom:0.75rem;">🤫</span>
+      <div style="font-size:12px; font-weight:700; color:#d4537e; text-transform:uppercase; letter-spacing:0.08em; margin-bottom:0.5rem; text-align:center;">things we don't dare to say</div>
+      <div style="font-size:14px; color:#888; line-height:1.6; margin-bottom:1.25rem; text-align:center;">just between us🤍<br>u can say whatever you want and let it live here hehe💙💙</div>
+      <div class="secret-feed" id="secret-feed2" style="display:flex; flex-direction:column; gap:8px; min-height:80px; max-height:320px; overflow-y:auto; background:#fff8fe; border:1.5px solid #f4c0d1; border-radius:14px; padding:12px; margin-bottom:12px;">
+        <div class="secret-empty">loading..</div>
+      </div>
+      <div class="secret-status" id="secret-status2"></div>
+      <div class="secret-input-row">
+        <textarea class="secret-input" id="secret-input2" placeholder="Type here!!" rows="1"></textarea>
+        <button class="secret-send-btn" id="secret-send-btn2" onclick="sendSecret2()">send 🤫</button>
+      </div>
     </div>
-    <div class="secret-status" id="secret-status2"></div>
-    <div class="secret-input-row">
-      <textarea class="secret-input" id="secret-input2" placeholder="Type here!!" rows="1"></textarea>
-      <button class="secret-send-btn" id="secret-send-btn2" onclick="sendSecret2()">send 🤫</button>
+    <div style="background:#fff; border:1.5px solid #f4c0d1; border-radius:20px; padding:2rem 1.5rem; margin-bottom:1.5rem;">
+      <div style="font-size:40px; text-align:center; margin-bottom:1rem;">💙</div>
+      <div style="font-size:12px; font-weight:700; color:#d4537e; text-transform:uppercase; letter-spacing:0.08em; margin-bottom:0.75rem; text-align:center;">what i like about you</div>
+      <div style="font-size:16px; color:#3d3d3a; line-height:1.85; margin-bottom:1.5rem;">25/04/2026:<br>i like you because you treat everyone very nice, i like you because everytime you smile you just idk.. brighten up my day, i like you because ure so secure with urself, i like you because i think we vibe really well(idk haha to me only maybee), i like you because ure so troll, i like you because we can talk for hours and like not get bored (dont really happen to me,, so maybe not so special to u HAHA), i like you because ure so positive(?) haha idk u acting or what la so if ure not then oops, i like you because even though you dont have to, you still cared when i was angry for some dumb reasons or sad. i like you because you remember all the small things (good and bad la hahah but hehe), i like you because you make everything more fun (ik im a quiet person, so thank you so much for always talking,, dont blame urself for yapping hehe because i love it), i like you because whenever you're around, my mind is at peace hahaha, i just feel so comfortable around you..<br><br>apart from those,, there are moments where i just cjsjsnxn uk.. hahahah the first time we walked, the first time we called until really late to study tgt, the first time i held ur hands, the first time we hugged, the first time we kissed... the first time u slept on my lap,, i looked at u and thought i want to take care of you my whole life, i want you to be happy no matter what haha...<br><br>im so sorry jaenne im tearing up typing this knowing today is our last day doing stupid shit tgt ahahha.. hehe i promise i'll stop this nonsense alright, just let me be there for you when you need it okayy?? i promise i'll just be there as a listening ear.. anyways you know where to spawn me hehe!! treat me as ur ur spare tyre HAHA you can use me when you need me and nothing else okeie? HAHA<br><br>please allow me to still take care of you whenever i can,, u can spawn me anytime when you need someone to throw everything at<br><br>...okayyy i think i gonna break down if i continue typing,, but you get me rightt haha😭hehe whatever is in here stays in here OKAY!!!? i know i'm not supposed to say it anymore after today but i love you lots dummy💙</div>
+    </div>
+    <button class="back-btn" onclick="goBack()">← Back</button>
+  </div>
+
+  <!-- ── MINE PAGE (hidden, triple-tap 💌 to access) ── -->
+  <div id="mine-page">
+    <div class="mine-header">
+      <span class="mine-header-emoji">🫙</span>
+      <h2>just for me</h2>
+      <p>my little corner. nobody else needs to see this hehe</p>
+    </div>
+
+    <div class="mine-tabs">
+      <button class="mine-tab active" onclick="switchTab('gallery')">📸 us</button>
+      <button class="mine-tab" onclick="switchTab('journal')">📓 journal</button>
+    </div>
+
+    <!-- GALLERY TAB -->
+    <div id="gallery-tab">
+      <div class="gallery-grid" id="gallery-grid">
+
+        <!--
+          ════════════════════════════════════════════
+          HOW TO ADD PHOTOS / VIDEOS:
+          Copy one of the blocks below and change:
+            - src="YOUR_FILE.jpg"   ← your image/video filename from github
+            - data-caption="..."    ← optional caption on hover
+          For videos, use the <video> block instead of <img>.
+          ════════════════════════════════════════════
+
+          PHOTO EXAMPLE:
+          <div class="gallery-item" onclick="openLightbox('YOUR_FILE.jpg', 'img')">
+            <img src="YOUR_FILE.jpg" alt="" />
+            <div class="gallery-caption">caption here</div>
+          </div>
+
+          VIDEO EXAMPLE:
+          <div class="gallery-item" onclick="openLightbox('YOUR_FILE.mp4', 'video')">
+            <video src="YOUR_FILE.mp4" muted playsinline></video>
+            <div class="play-icon">▶️</div>
+            <div class="gallery-caption">caption here</div>
+          </div>
+        -->
+
+        <!-- ↓↓↓ ADD YOUR PHOTOS/VIDEOS BELOW HERE ↓↓↓ -->
+
+        <!-- EXAMPLE PLACEHOLDERS — replace src with your real files -->
+        <div class="gallery-item" onclick="openLightbox('photo1.jpg', 'img')">
+          <img src="photo1.jpg" alt="" />
+          <div class="gallery-caption">replace with your photo 🤍</div>
+        </div>
+
+        <div class="gallery-item" onclick="openLightbox('photo2.jpg', 'img')">
+          <img src="photo2.jpg" alt="" />
+          <div class="gallery-caption">replace with your photo 🤍</div>
+        </div>
+
+        <!-- ↑↑↑ ADD MORE ABOVE HERE ↑↑↑ -->
+
+      </div>
+      <p class="gallery-add-note">add more photos by editing the gallery-grid section in the html 🤍</p>
+    </div>
+
+    <!-- JOURNAL TAB -->
+    <div id="journal-tab">
+
+      <!--
+        ════════════════════════════════════════════
+        HOW TO ADD A JOURNAL ENTRY:
+        Copy the block below, paste it at the TOP (so newest is first),
+        and fill in the date, title, mood emoji, and text.
+        ════════════════════════════════════════════
+      -->
+
+      <!-- ↓↓↓ PASTE NEW ENTRIES AT THE TOP ↓↓↓ -->
+
+      <div class="journal-entry">
+        <div class="journal-date">25 Apr 2026</div>
+        <div class="journal-mood">💙</div>
+        <div class="journal-title">the last day</div>
+        <div class="journal-text">this is your first journal entry. write whatever you want here — how you're feeling, what happened today, things you want to remember. nobody else can see this hehe.
+
+just triple-tap the 💌 at the top to get back here anytime.</div>
+      </div>
+
+      <!-- ↑↑↑ PASTE NEW ENTRIES ABOVE HERE ↑↑↑ -->
+
+    </div>
+
+    <div style="margin-top: 2rem; text-align: center;">
+      <button class="back-btn" onclick="goBack()">← Back</button>
     </div>
   </div>
-  <div style="background:#fff; border:1.5px solid #f4c0d1; border-radius:20px; padding:2rem 1.5rem; margin-bottom:1.5rem;">
-    <div style="font-size:40px; text-align:center; margin-bottom:1rem;">💙</div>
-    <div style="font-size:12px; font-weight:700; color:#d4537e; text-transform:uppercase; letter-spacing:0.08em; margin-bottom:0.75rem; text-align:center;">what i like about you</div>
-    <div style="font-size:16px; color:#3d3d3a; line-height:1.85; margin-bottom:1.5rem;">25/04/2026:<br>i like you because you treat everyone very nice, i like you because everytime you smile you just idk.. brighten up my day, i like you because ure so secure with urself, i like you because i think we vibe really well(idk haha to me only maybee), i like you because ure so troll, i like you because we can talk for hours and like not get bored (dont really happen to me,, so maybe not so special to u HAHA), i like you because ure so positive(?) haha idk u acting or what la so if ure not then oops, i like you because even though you dont have to, you still cared when i was angry for some dumb reasons or sad. i like you because you remember all the small things (good and bad la hahah but hehe), i like you because you make everything more fun (ik im a quiet person, so thank you so much for always talking,, dont blame urself for yapping hehe because i love it), i like you because whenever you're around, my mind is at peace hahaha, i just feel so comfortable around you..<br><br>apart from those,, there are moments where i just cjsjsnxn uk.. hahahah the first time we walked, the first time we called until really late to study tgt, the first time i held ur hands, the first time we hugged, the first time we kissed... the first time u slept on my lap,, i looked at u and thought i want to take care of you my whole life, i want you to be happy no matter what haha...<br><br>im so sorry jaenne im tearing up typing this knowing today is our last day doing stupid shit tgt ahahha.. hehe i promise i'll stop this nonsense alright, just let me be there for you when you need it okayy?? i promise i'll just be there as a listening ear.. anyways you know where to spawn me hehe!! treat me as ur ur spare tyre HAHA you can use me when you need me and nothing else okeie? HAHA<br><br>please allow me to still take care of you whenever i can,, u can spawn me anytime when you need someone to throw everything at<br><br>...okayyy i think i gonna break down if i continue typing,, but you get me rightt haha😭hehe whatever is in here stays in here OKAY!!!? i know i'm not supposed to say it anymore after today but i love you lots dummy💙</div>
+
+  <!-- LIGHTBOX -->
+  <div class="lightbox" id="lightbox" onclick="closeLightbox()">
+    <span class="lightbox-close" onclick="closeLightbox()">✕</span>
+    <img id="lightbox-img" src="" alt="" style="display:none;" />
+    <video id="lightbox-video" src="" controls style="display:none;"></video>
   </div>
-  <button class="back-btn" onclick="goBack()">← Back</button>
-</div>
 
   <div class="hike-card" id="hike-card">
     <div class="hike-scene" id="hike-scene">
@@ -230,18 +318,58 @@
     const BIN_URL = 'https://api.jsonbin.io/v3/b/' + BIN_ID;
     const HEADERS = { 'Content-Type': 'application/json', 'X-Master-Key': API_KEY };
 
+    // ── SECRET TAP: single-tap 💌 to open mine page ──
+    document.getElementById('secret-tap-emoji').addEventListener('click', function() {
+      showMinePage();
+    });
+
+    // ── MINE PAGE ──
+    function showMinePage() {
+      hideAll();
+      document.getElementById('mine-page').style.display = 'block';
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    }
+
+    function switchTab(tab) {
+      document.getElementById('gallery-tab').style.display = tab === 'gallery' ? 'block' : 'none';
+      document.getElementById('journal-tab').style.display = tab === 'journal' ? 'block' : 'none';
+      document.querySelectorAll('.mine-tab').forEach((btn, i) => {
+        btn.classList.toggle('active', (tab === 'gallery' && i === 0) || (tab === 'journal' && i === 1));
+      });
+    }
+
+    // ── LIGHTBOX ──
+    function openLightbox(src, type) {
+      const lb = document.getElementById('lightbox');
+      const img = document.getElementById('lightbox-img');
+      const vid = document.getElementById('lightbox-video');
+      if (type === 'img') {
+        img.src = src; img.style.display = 'block';
+        vid.style.display = 'none'; vid.pause && vid.pause();
+      } else {
+        vid.src = src; vid.style.display = 'block';
+        img.style.display = 'none';
+      }
+      lb.classList.add('open');
+    }
+    function closeLightbox() {
+      document.getElementById('lightbox').classList.remove('open');
+      const vid = document.getElementById('lightbox-video');
+      vid.pause && vid.pause();
+    }
+
     const messages = {
       goodday: { emoji: "😆", title: "Open when you're having a good day", text: "the best is yet to come!! hehe i'm glad that today has been kind to you, i love your smile a lot,, so please keep smiling! since you're having a good day,, hmm you should take a photo/video/tiktok and and and you know you knowww.. accidentally send it to <a href='https://t.me/bryanananananannanananannaanna' target='_blank' style='color:#c45c8a; font-weight:600; text-decoration:none;'>idkk</a> ahahah.\n\nokay bye stop reading this hahah go enjoy the rest of the day!!\n\np.s. hehe you deserve days like this for the rest of your life!! i hope no guys notices how pretty you look when you smile zzz 💛" },
       accomplished: { emoji: "✨", title: "Open when you accomplished something", text: "HIII DUMMYYYY!! hehe whatever you accomplished, GOODJOBB I'M SO PROUD OF YOU!!! YOU KNOW THAT RIGHTTTT!! hehe i hope you're proud of yourself toooo,, and and know that this is just the beginning ahah there's so much more coming for you and and i cannot wait for you to kill it every single time, and and i hope you can come back to this although it'll be the same stuff HAHAHAHAHAHAHAHA\n\np.s. hehe no matter how big or small the achievements, i'm still proud of you okie hehe dummyyy👻" },
       aura: { emoji: "🤡", title: "Open when you're acting cool but we both know you're not (aura my ass)", text: "...acting nonchalant again haiss it's okay have your moment hehe but you and i know how you really are🤣 hehe look at u dummy so cute hasbnglsgasbgag hahah okay fine just don't let it get to your head hehe because i'll be the first one to call you out AHHAHAH AND YOU KNOW IT! okay go have your fun hehe get lost dumbass\n\np.s. 'you like me?' hehehehe and and i know you will probably hate me for putting this photo here HAHA", image: "AHAH.jpg" },
       alone: { emoji: "🫂", title: "Open when you feel alone", text: "hi dummyy i wish i was there with you now :< just know that you're not as alone as you feel okay? <a href='https://t.me/bryanananananannanananannaanna' target='_blank' style='color:#c45c8a; font-weight:600; text-decoration:none;'>hehe i am always one message away okeie</a>\n\ni hope that you know that me writing this means i was thinking about you even before you felt this way🤪hehe i know you will have people there for you but just in case you don't,, HIIII I'M HEREEE, even though it's through a screen HAHAHAHHAHAHA😆\n\n🤍look at how happy we were here!! hehe\n\np.s. idky i made this button, haiss got so many guys, when will you be alone boo🥱 anyways if no guys are available, you can message me!", video: "video2.MP4" },
-      procrastinate: { emoji: "🙃", title: "Open when you're procrastinating instead of doing work", text: "you really opened this instead of using tiktok/instagram..hmmm is it someone miss me🤭🤭hehe i wanna sleepppp zzz okayyy since you're already here, go drink some water!!!hahah you always figure it out anyways hehe go use tiktok or something for a while more then START DOING YOUR WORKKKK\n\np.s. go do your work then come back to me darling🫢😋"},
+      procrastinate: { emoji: "🙃", title: "Open when you're procrastinating instead of doing work", text: "you really opened this instead of using tiktok/instagram..hmmm is it someone miss me🤭🤭hehe i wanna sleepppp zzz okayyy since you're already here, go drink some water!!!hahah you always figure it out anyways hehe go use tiktok or something for a while more then START DOING YOUR WORKKKK\n\np.s. go do your work then come back to me darling🫢😋" },
       bored: { emoji: "😈", title: "Open when you're bored and bothering people", text: "..ohhhh so you've run out of other people to annoy then now you come here isittttt?? thank you jaenne,, at least i'm the last choice haiss..remember to drink water!! fineee i'll just allow you to <a href='https://t.me/bryanananananannanananannaanna' target='_blank' style='color:#c45c8a; font-weight:600; text-decoration:none;'>disturb me</a>😊tell me how's your day!!\n\np.s. you just guessed this gift to be a presentation slide hehe dummy u so fucking cute" },
       thinking: { emoji: "🤍", title: "Open when you're thinking about things you won't tell anyone", text: "it's okay if you can't share with anyone!! write it on a piece of paper or type it out in ur notes and forget about it hehe if it's really poking your brain then then you can tell your bf or your brother about it? hehe you can try your friends if they are not free, me oso can!!😝\n\nhehe just know that whenever you are ready, you can share it with meeee, you don't have to carry everything alone okay hehe.\n\np.s. stop keeping stuff to yourself🤬🤬🤬" },
       pretend: { emoji: "🎭", title: "Open when you're tired of pretending you're okay", text: "hi dummyy you can stop pretending you're okay (if you're not) when i'm still your friend okay?? just tell me if you're not okay then then erm maybe we can talk about it afterwards or or we can just talk about it now hehe i'm at your disposal😉🤪 i know even after reading this, you will still keep it to yourself hahahah but when you can't take it anymore and if your bro/bf aren't free, you know where to <a href='https://t.me/bryanananananannanananannaanna' target='_blank' style='color:#c45c8a; font-weight:600; text-decoration:none;'>find me</a> hehe\n\np.s. hehe you can do it my dummy!! nothing you can't handle🤍" },
       textmepls: { emoji: "📱", title: "Open when you feel like texting me but don't", text: "what the fuck you pig...JUST FREAKING TEXT ME ALREADYYYY YOU DO KNOW THAT I'M WAITING FOR YOUR MESSAGE RIGHTTT KNN🙈🙈 just just say hi :< okay i won't ignore you.. i thinkk🤪🤣\n\np.s. just fucking message me nigga" },
       thinkaboutu: { emoji: "👀", title: "Open when you're wondering if anyone thinks about you (spoiler: yes 👀)", text: "okay first of all how dare you even think about this😡second of all, hehe yes dummy, i'm thinking about youuu, more than you expect🙃 i hope you know that you'll be on my mind at the most random timings. and and everytime i just hope that you're doing fine and and having the best time of your life hehehhehhehe,, do you still remember that day at the big bench hehe that day just replay in my mind every now and then HAHA okay i'm retarded. actually that one time you didn't tell your bf you went to drink after school hehe.. I MISS ALL OF THOSE OKAYY🫣😓🤧 \n\np.s. no matter when you press into this, just know that i'm thinking about you 👉🏻👈🏻.. enjoy the rest of the day!!", image: "us.jpg" },
-      diff: { emoji: "💙", title: "Open when you wish things were different", text: "i knoww.. sometimes things just doesn't go the way as you planned but it's okay!! hehe just know that you're on your way there, everything happens for a reason😬🤩you are where you need to be even if you don't feel like it yet okie? everything will turn out just as you wanted hehe💅🏼💅🏼\n\n <em>i wished things were different between us:< hehe i know you don't care but i really wish we met earlier and and i wish we had more time and and i wish we could do all the stupid shit we talk about HAHAHHA😪😪 but meh, things could be different but i still wouldn't give up whatever we have now for anything else hehe🤪🤪</em>\n\n<em>'i wish there was a way to know you're in the good old days before you've actually left them': hehe lucky for me, i know every moment spent with you is never ever wasted, even the random, quiet ones (ok i know udl quiet hehe butbut i enjoy anything with u hehe), and and like even when nothing much is happening. somehow everything just feels different when it's with you. time moves a little faster,, or maybe it just matters more.. hehe i know it's abit of a stretch but i do hope you enjoyed it as much as i did👻</em>\n\np.s. everything will turn out just fine my dummy HEHE💙💙", video: "video1.MP4" },
+      diff: { emoji: "💙", title: "Open when you wish things were different", text: "i knoww.. sometimes things just doesn't go the way as you planned but it's okay!! hehe just know that you're on your way there, everything happens for a reason😬🤩you are where you need to be even if you don't feel like it yet okie? everything will turn out just as you wanted hehe💅🏼💅🏼\n\n <em>i wished things were different between us:< hehe i know you don't care but i really wish we met earlier and and i wish we had more time and and i wish we could do all the stupid shit we talk about HAHAHHA😪😪 but meh, things could be different but i still wouldn't give up whatever we have now for anything else hehe🤪🤪</em>\n\np.s. everything will turn out just fine my dummy HEHE💙💙", video: "video1.MP4" },
       sad: { emoji: "😢", title: "Open when you're sad", text: "hi stupidhead,, what's keeping you down??? hehe i don't like it when you're sad and and if you don't tell anyone about it sooo this is me trying to be there whenever you are sad okieieie?🤪 hehe i wish i could teleport next to u and and just be there with u..  i know you're not gonna tell anyone, or or even tell me when you read this, but do whatever you need to let it out, cry if you have to okayy?? everything will be finee and i know it👻 \n\n and anddd whatever that is making you sad, it's valid okayy and don't feel like it's not important dummy hahah i'll take time off whatever i'm doing just to listen to you if you need someone to be there okayy??🤭 you're allowed to be sad sooo don't rush yourself to feel better by pretending!!\n\np.s. since you're mine until your boyfriend proposes, i love you lots hehe🐽 if you can't find anyone to talk to, you know where to <a href='https://t.me/bryanananananannanananannaanna' target='_blank' style='color:#c45c8a; font-weight:600; text-decoration:none;'>find me</a>🤍" },
       lost: { emoji: "🧭", title: "Open when you feel lost", text: "hehe welcome to my club!! i guess we are meant to be then hehe💙 sorry i just wanted to add the 'when you're sad' but it feels wrong to have odd numbers so deal with my ocd,, even more so now that you're mine for the time being🤪💙\n\n but hmm, if you ever find yourself needing this,\n\nfeeling lost doesn't mean you're in the wrong direction, it just means you're on your way there okieie? give it some time duckyyy🤭 you're a smarty pantss hehe i know that whatever choice you make is right!!😆i meaaaan just don't make any big decisions when you're tipsy cos you did admit to me that you're a dumb dog HEHE🐶🐶 drink some water and go to bed okeie think about it tomorrow morning dummy.\n\np.s. anywaysss, lost or not, you're still my dummy💙 or dumb dog in this case HEHEH🐶🐶woof woof" },
       married: { emoji: "👰‍♀️", title: "Open when you're getting married today!!", text: "JAENNEEEEE!? YOU'RE GETTING MARRIED!!! hehe CONGRATULATIONS DUMMYYYYY🥹🥹 i told you everything will work out just fine hehe..\n\ni hope he's everything you deserve and more!! and i hope he knows how lucky he is to have you forever🥲🥲zz i'm so happy for you darling hehe okay it's my last time calling you names ahhaha i'll let you off from now on\n\ni'm so happy for you Jaenne and you deserve the best love story there is hahah kayusrgbfa you can still come to me if you ever need it okay?🫣okmaybeushouldn'thahafucki'msorry\n\np.s.you don't have to invite me to the wedding, i cannot cry in front of you hehe but i bet you'll look soo fucking beautiful in white!!🤧😪please be happy for the rest of you life.. hehe for one last time.. I LOVE YOU LOTS JAENNE😊" },
@@ -268,6 +396,14 @@
       document.getElementById('final-stars').appendChild(s);
     }
 
+    function hideAll() {
+      document.getElementById('home').style.display = 'none';
+      document.getElementById('msg-card').classList.remove('visible');
+      document.getElementById('hike-card').classList.remove('visible');
+      document.getElementById('footer-page').style.display = 'none';
+      document.getElementById('mine-page').style.display = 'none';
+    }
+
     function show(mood) {
       const m = messages[mood];
       document.getElementById('msg-emoji').textContent = m.emoji;
@@ -277,34 +413,29 @@
       if (m.image) { imgEl.src = m.image; imgEl.style.display = 'block'; } else { imgEl.style.display = 'none'; }
       const vidEl = document.getElementById('msg-video');
       if (m.video) { vidEl.src = m.video; vidEl.style.display = 'block'; } else { vidEl.style.display = 'none'; }
-      document.getElementById('home').style.display = 'none';
+      hideAll();
       document.getElementById('msg-card').classList.add('visible');
       window.scrollTo({ top: 0, behavior: 'smooth' });
-    }
-
-    // ── JSONBIN SECRETS ──
-    function formatTime(ts) {
-      return new Date(ts).toLocaleDateString('en-SG', { day: 'numeric', month: 'short', year: 'numeric', hour: '2-digit', minute: '2-digit' });
     }
 
     function escapeHtml(str) {
       return str.replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;');
     }
+    function formatTime(ts) {
+      return new Date(ts).toLocaleDateString('en-SG', { day: 'numeric', month: 'short', year: 'numeric', hour: '2-digit', minute: '2-digit' });
+    }
 
     function showHike() {
-      hikeStep = 0;
-      noAttempts = 0;
-      document.getElementById('home').style.display = 'none';
+      hikeStep = 0; noAttempts = 0;
+      hideAll();
       document.getElementById('hike-card').classList.add('visible');
       document.getElementById('hike-scene').style.display = 'flex';
       document.getElementById('final-scene').classList.remove('show');
       document.getElementById('proposal-view').style.display = 'block';
       document.getElementById('yes-response').classList.remove('show');
       const noBtn = document.getElementById('no-btn');
-      noBtn.style.display = 'inline-block';
-      noBtn.style.opacity = '1';
-      noBtn.style.fontSize = '16px';
-      noBtn.style.padding = '12px 32px';
+      noBtn.style.display = 'inline-block'; noBtn.style.opacity = '1';
+      noBtn.style.fontSize = '16px'; noBtn.style.padding = '12px 32px';
       noBtn.style.transform = 'translate(0,0)';
       renderHikeStep();
       window.scrollTo({ top: 0, behavior: 'smooth' });
@@ -325,8 +456,7 @@
 
     function runAway() {
       noAttempts++;
-      const x = (Math.random() - 0.5) * 160;
-      const y = (Math.random() - 0.5) * 80;
+      const x = (Math.random() - 0.5) * 160, y = (Math.random() - 0.5) * 80;
       const noBtn = document.getElementById('no-btn');
       noBtn.style.transform = 'translate(' + x + 'px, ' + y + 'px)';
       if (noAttempts >= 3) { noBtn.style.opacity = '0.4'; noBtn.style.fontSize = '12px'; noBtn.style.padding = '8px 16px'; }
@@ -348,8 +478,7 @@
         setTimeout(() => {
           const c = document.createElement('div');
           c.className = 'confetti-piece';
-          c.style.left = Math.random() * 100 + '%';
-          c.style.top = '0px';
+          c.style.left = Math.random() * 100 + '%'; c.style.top = '0px';
           c.style.background = colors[Math.floor(Math.random() * colors.length)];
           c.style.animationDuration = (1.5 + Math.random()) + 's';
           c.style.animationDelay = (Math.random() * 0.3) + 's';
@@ -360,84 +489,85 @@
     }
 
     function goBack() {
+      hideAll();
       document.getElementById('home').style.display = 'block';
-      document.getElementById('msg-card').classList.remove('visible');
-      document.getElementById('hike-card').classList.remove('visible');
       window.scrollTo({ top: 0, behavior: 'smooth' });
-      document.getElementById('footer-page').style.display = 'none';
     }
 
     function showFooterPage() {
-  document.getElementById('home').style.display = 'none';
-  document.getElementById('footer-page').style.display = 'block';
-  loadSecrets2();
-  window.scrollTo({ top: 0, behavior: 'smooth' });
-  const input = document.getElementById('secret-input2');
-  input.addEventListener('keydown', function(e) {
-    if (e.key === 'Enter' && !e.shiftKey) { e.preventDefault(); sendSecret2(); }
-  });
-  input.addEventListener('input', function() {
-    this.style.height = 'auto';
-    this.style.height = Math.min(this.scrollHeight, 120) + 'px';
-  });
-}
-
-async function loadSecrets2() {
-  document.getElementById('secret-feed2').innerHTML = '<div class="secret-empty">loading..</div>';
-  try {
-    const res = await fetch(BIN_URL + '/latest', { headers: { 'X-Master-Key': API_KEY } });
-    const data = await res.json();
-    const secrets = data.record.secrets || [];
-    const feed = document.getElementById('secret-feed2');
-    feed.innerHTML = '';
-    if (!secrets || secrets.length === 0) {
-      feed.innerHTML = '<div class="secret-empty">nothing here yet.. be the first to share something 🤫</div>';
-      return;
+      hideAll();
+      document.getElementById('footer-page').style.display = 'block';
+      loadSecrets2();
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+      const input = document.getElementById('secret-input2');
+      input.addEventListener('keydown', function(e) {
+        if (e.key === 'Enter' && !e.shiftKey) { e.preventDefault(); sendSecret2(); }
+      });
+      input.addEventListener('input', function() {
+        this.style.height = 'auto';
+        this.style.height = Math.min(this.scrollHeight, 120) + 'px';
+      });
     }
-    secrets.forEach(s => {
-      const bubble = document.createElement('div');
-      bubble.className = 'secret-bubble';
-      bubble.innerHTML = escapeHtml(s.text) + '<span class="bubble-time">' + formatTime(s.ts) + '</span>';
-      feed.appendChild(bubble);
-    });
-    feed.scrollTop = feed.scrollHeight;
-  } catch (e) {
-    document.getElementById('secret-feed2').innerHTML = '<div class="secret-empty">couldn\'t load messages 😢</div>';
-  }
-}
 
-async function sendSecret2() {
-  const input = document.getElementById('secret-input2');
-  const btn = document.getElementById('secret-send-btn2');
-  const status = document.getElementById('secret-status2');
-  const text = input.value.trim();
-  if (!text) return;
-  btn.disabled = true;
-  status.textContent = 'sending..';
-  try {
-    const res = await fetch(BIN_URL + '/latest', { headers: { 'X-Master-Key': API_KEY } });
-    const data = await res.json();
-    const secrets = data.record.secrets || [];
-    secrets.push({ text, ts: Date.now() });
-    await fetch(BIN_URL, { method: 'PUT', headers: HEADERS, body: JSON.stringify({ secrets }) });
-    input.value = '';
-    input.style.height = 'auto';
-    status.textContent = '';
-    const feed = document.getElementById('secret-feed2');
-    feed.innerHTML = '';
-    secrets.forEach(s => {
-      const bubble = document.createElement('div');
-      bubble.className = 'secret-bubble';
-      bubble.innerHTML = escapeHtml(s.text) + '<span class="bubble-time">' + formatTime(s.ts) + '</span>';
-      feed.appendChild(bubble);
-    });
-    feed.scrollTop = feed.scrollHeight;
-  } catch (e) {
-    status.textContent = 'failed to send 😢 try again!';
-  } finally {
-    btn.disabled = false;
-  }
-}
+    async function loadSecrets2() {
+      document.getElementById('secret-feed2').innerHTML = '<div class="secret-empty">loading..</div>';
+      try {
+        const res = await fetch(BIN_URL + '/latest', { headers: { 'X-Master-Key': API_KEY } });
+        const data = await res.json();
+        const secrets = data.record.secrets || [];
+        const feed = document.getElementById('secret-feed2');
+        feed.innerHTML = '';
+        if (!secrets || secrets.length === 0) {
+          feed.innerHTML = '<div class="secret-empty">nothing here yet.. be the first to share something 🤫</div>';
+          return;
+        }
+        secrets.forEach(s => {
+          const bubble = document.createElement('div');
+          bubble.className = 'secret-bubble';
+          bubble.innerHTML = escapeHtml(s.text) + '<span class="bubble-time">' + formatTime(s.ts) + '</span>';
+          feed.appendChild(bubble);
+        });
+        feed.scrollTop = feed.scrollHeight;
+      } catch (e) {
+        document.getElementById('secret-feed2').innerHTML = '<div class="secret-empty">couldn\'t load messages 😢</div>';
+      }
+    }
+
+    async function sendSecret2() {
+      const input = document.getElementById('secret-input2');
+      const btn = document.getElementById('secret-send-btn2');
+      const status = document.getElementById('secret-status2');
+      const text = input.value.trim();
+      if (!text) return;
+      btn.disabled = true; status.textContent = 'sending..';
+      try {
+        const res = await fetch(BIN_URL + '/latest', { headers: { 'X-Master-Key': API_KEY } });
+        const data = await res.json();
+        const secrets = data.record.secrets || [];
+        secrets.push({ text, ts: Date.now() });
+        await fetch(BIN_URL, { method: 'PUT', headers: HEADERS, body: JSON.stringify({ secrets }) });
+        input.value = ''; input.style.height = 'auto'; status.textContent = '';
+        const feed = document.getElementById('secret-feed2');
+        feed.innerHTML = '';
+        secrets.forEach(s => {
+          const bubble = document.createElement('div');
+          bubble.className = 'secret-bubble';
+          bubble.innerHTML = escapeHtml(s.text) + '<span class="bubble-time">' + formatTime(s.ts) + '</span>';
+          feed.appendChild(bubble);
+        });
+        feed.scrollTop = feed.scrollHeight;
+      } catch (e) {
+        status.textContent = 'failed to send 😢 try again!';
+      } finally {
+        btn.disabled = false;
+      }
+    }
+
+    // console helper — open browser console and type clearSecrets() to wipe all messages
+    async function clearSecrets() {
+      await fetch(BIN_URL, { method: 'PUT', headers: HEADERS, body: JSON.stringify({ secrets: [] }) });
+      console.log('secrets cleared!');
+    }
   </script>
 
 </body>
