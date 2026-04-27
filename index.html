@@ -106,7 +106,7 @@
     .gallery-add-note { text-align: center; font-size: 12px; color: #333; margin-top: 1rem; font-style: italic; }
 
     /* lightbox */
-    .lightbox { display: none; position: fixed; inset: 0; background: rgba(0,0,0,0.9); z-index: 999; justify-content: center; align-items: center; padding: 1rem; }
+    .lightbox { display: none; position: fixed; inset: 0; background: rgba(0,0,0,0.9); z-index: 999; justify-content: center; align-items: flex-start; padding: 1rem; overflow-y: auto; }
     .lightbox.open { display: flex; }
     .lightbox img, .lightbox video { max-width: 100%; max-height: 90vh; border-radius: 12px; object-fit: contain; }
     .lightbox-close { position: absolute; top: 16px; right: 20px; color: #fff; font-size: 28px; cursor: pointer; line-height: 1; }
@@ -247,14 +247,6 @@
     <!-- JOURNAL TAB -->
     <div id="journal-tab">
 
-      <!--
-        ════════════════════════════════════════════
-        HOW TO ADD A JOURNAL ENTRY:
-        Copy the block below, paste it at the TOP (so newest is first),
-        and fill in the date, title, mood emoji, and text.
-        ════════════════════════════════════════════
-      -->
-
       <!-- ↓↓↓ PASTE NEW ENTRIES AT THE TOP ↓↓↓ -->
 
       <div class="journal-entry">
@@ -360,7 +352,7 @@ function openLightbox(src, type, caption) {
   if (!capEl) {
     capEl = document.createElement('div');
     capEl.id = 'lightbox-caption';
-    capEl.style.cssText = 'color:#fff; font-size:13px; text-align:center; margin-top:10px; opacity:0.8;';
+    capEl.style.cssText = 'color:#fff; font-size:13px; text-align:center; margin-top:12px; opacity:0.85; max-width:500px; line-height:1.7; padding: 0 1rem 2rem;';
     lb.appendChild(capEl);
   }
   capEl.textContent = caption || '';
