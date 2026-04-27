@@ -268,7 +268,7 @@ just triple-tap the 💌 at the top to get back here anytime.</div>
   </div>
 
   <!-- LIGHTBOX -->
-  <div class="lightbox" id="lightbox" onclick="closeLightbox()">
+  <div class="lightbox" id="lightbox">
     <span class="lightbox-close" onclick="closeLightbox()">✕</span>
     <img id="lightbox-img" src="" alt="" style="display:none;" />
     <video id="lightbox-video" src="" controls style="display:none;"></video>
@@ -577,6 +577,9 @@ function openLightbox(src, type, caption) {
   vid.pause && vid.pause();
   vid.src = '';
 }
+    document.getElementById('lightbox').addEventListener('click', function(e) {
+  if (e.target === this) closeLightbox();
+});
   </script>
 
 </body>
