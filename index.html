@@ -326,11 +326,17 @@
     });
 
     // ── MINE PAGE ──
-    function showMinePage() {
-      hideAll();
-      document.getElementById('mine-page').style.display = 'block';
-      window.scrollTo({ top: 0, behavior: 'smooth' });
-    }
+function showMinePage() {
+  const pw = prompt('🔒boo :p guess it if u can');
+  if (pw === null) return; // cancelled
+  if (pw.toLowerCase() === '11111111') {
+    hideAll();
+    document.getElementById('mine-page').style.display = 'block';
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  } else {
+    alert('wrong password dummy 🙈');
+  }
+}
 
     function switchTab(tab) {
       document.getElementById('gallery-tab').style.display = tab === 'gallery' ? 'block' : 'none';
