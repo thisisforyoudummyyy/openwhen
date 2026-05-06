@@ -88,7 +88,7 @@
     .mine-header p { font-size: 13px; color: #bbb; }
 
     /* tabs */
-    .mine-tabs { display: flex; gap: 8px; justify-content: center; margin-bottom: 1.5rem; }
+    .mine-tabs { display: flex; gap: 8px; justify-content: center; margin-bottom: 1.5rem; flex-wrap: wrap; }
     .mine-tab { background: #fff; border: 1.5px solid #f4c0d1; border-radius: 20px; padding: 8px 20px; font-size: 13px; font-weight: 600; color: #993556; cursor: pointer; transition: background 0.15s, border-color 0.15s; }
     .mine-tab.active { background: #c45c8a; border-color: #c45c8a; color: #fff; }
     .mine-tab:hover:not(.active) { background: #fff0f6; }
@@ -96,6 +96,7 @@
     /* gallery */
     #gallery-tab { display: block; }
     #journal-tab { display: none; }
+    #herdiary-tab { display: none; }
     .gallery-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 10px; }
     .gallery-item { border-radius: 14px; overflow: hidden; position: relative; background: #f4c0d1; aspect-ratio: 1/1; cursor: pointer; }
     .gallery-item img, .gallery-item video { width: 100%; height: 100%; object-fit: cover; display: block; transition: transform 0.3s; }
@@ -118,6 +119,28 @@
     .journal-text { font-size: 14px; color: #555; line-height: 1.85; white-space: pre-wrap; }
     .journal-mood { position: absolute; top: 1.25rem; right: 1.25rem; font-size: 22px; }
     .journal-empty { text-align: center; font-size: 14px; color: #ccc; padding: 3rem 0; }
+
+    /* ── HER DIARY ── */
+    .herdiary-intro { background: #fff; border: 1.5px solid #f4c0d1; border-radius: 18px; padding: 1.25rem 1.5rem; margin-bottom: 1rem; text-align: center; }
+    .herdiary-intro-emoji { font-size: 32px; display: block; margin-bottom: 0.5rem; }
+    .herdiary-intro-text { font-size: 13px; color: #aaa; line-height: 1.6; }
+    .herdiary-compose { background: #fff; border: 1.5px solid #f4c0d1; border-radius: 18px; padding: 1.25rem 1.5rem; margin-bottom: 1rem; }
+    .herdiary-textarea { width: 100%; border: 1.5px solid #f4c0d1; border-radius: 12px; padding: 12px 14px; font-size: 14px; font-family: inherit; color: #2c2c2a; outline: none; resize: none; min-height: 120px; background: #fff8fe; transition: border-color 0.15s; line-height: 1.7; }
+    .herdiary-textarea:focus { border-color: #d4537e; }
+    .herdiary-textarea::placeholder { color: #ddb0c5; }
+    .herdiary-row { display: flex; justify-content: space-between; align-items: center; margin-top: 10px; }
+    .herdiary-status { font-size: 12px; color: #ccc; }
+    .herdiary-save-btn { background: #c45c8a; border: none; border-radius: 12px; padding: 10px 22px; color: #fff; font-size: 14px; font-weight: 600; cursor: pointer; transition: background 0.15s, transform 0.1s; }
+    .herdiary-save-btn:hover { background: #a8456f; }
+    .herdiary-save-btn:active { transform: scale(0.96); }
+    .herdiary-save-btn:disabled { background: #e0a0bc; cursor: not-allowed; }
+    .herdiary-feed { display: flex; flex-direction: column; gap: 10px; }
+    .herdiary-entry { background: #fff; border: 1.5px solid #f4c0d1; border-radius: 18px; padding: 1.25rem 1.5rem; position: relative; animation: bubbleIn 0.25s ease; }
+    .herdiary-entry-time { font-size: 11px; font-weight: 700; color: #d4537e; text-transform: uppercase; letter-spacing: 0.06em; margin-bottom: 0.6rem; }
+    .herdiary-entry-text { font-size: 14px; color: #444; line-height: 1.85; white-space: pre-wrap; word-break: break-word; }
+    .herdiary-delete-btn { position: absolute; top: 12px; right: 14px; background: none; border: none; font-size: 16px; cursor: pointer; opacity: 0.3; transition: opacity 0.15s; padding: 2px 6px; border-radius: 6px; }
+    .herdiary-delete-btn:hover { opacity: 0.8; background: #fff0f6; }
+    .herdiary-empty { text-align: center; font-size: 13px; color: #ccc; padding: 2.5rem 0; line-height: 1.7; }
   </style>
 </head>
 <body>
@@ -190,87 +213,84 @@
     <div class="mine-tabs">
       <button class="mine-tab active" onclick="switchTab('gallery')">📸 us</button>
       <button class="mine-tab" onclick="switchTab('journal')">📓 journal</button>
+      <button class="mine-tab" onclick="switchTab('herdiary')">🌸 hers</button>
     </div>
 
     <!-- GALLERY TAB -->
     <div id="gallery-tab">
       <div class="gallery-grid" id="gallery-grid">
-
-        <!-- ↓↓↓ ADD YOUR PHOTOS/VIDEOS BELOW HERE ↓↓↓ -->
-
-        <!-- EXAMPLE PLACEHOLDERS — replace src with your real files -->
-
         <div class="gallery-item" onclick="openLightbox('u1.jpg', 'img', 'hehe do you remember today on 21/04/2026? we went to the museum and i think it was the time you got banged by that angmo uncle hehe🤭today, we sat on the cable car together for the first time, u slept on my lap for the first time, it was the first time i looked at you and i told myself nothing bad will ever happen to you, or atleast ull never be alone when it does, i wanna be there for you every single time you need someone.. it was also the first time i gently kissed ur lips, it was also the first time we kissed but u were tipsy no im not counting it hahah👻that night, you told me stuffs about you and i was so glad that i could be there for you when you were crying,, hehe go 7-11 for 3-4hrs hahaha')">
           <img src="u1.jpg" alt="" />
         </div>
-
         <div class="gallery-item" onclick="openLightbox('us.jpg', 'img', 'hehe do you remember today 26/03/2026? we went to the bar and someone was late hehe👀that night, we lay down on the big bench and i accidentally teared up.. idky i couldnt say this to you back then, but that was the most comforting feeling ive felt in the longest time..it was the first time i felt so relieved hehe👻that was the first time we hugged each other, you dont know how much i cried at home that day hehe')">
           <img src="us.jpg" alt="" />
         </div>
-
         <div class="gallery-item" onclick="openLightbox('video1.MP4', 'video', 'hehe this was taken on the same day as the 2nd photo 26/03/2026!! hehe today, we piggybacked each other for the first time, we hugged each other for the first time, and im not 100% sure but i think it was the first time we walked walk ukuk hahhaha.. it was today when i first felt something for you,, i loved that day sooo much💙udk how much i would pay to go back to that day🙈')">
           <video src="video1.MP4" muted playsinline preload="metadata"></video>
           <div class="play-icon">☺️</div>
         </div>
-
         <div class="gallery-item" onclick="openLightbox('video2.MP4', 'video', 'hehe darling.. why is everything taken on the same day hahah 26/03/2026 :< is it to remind me it was the first time i liked u! ahaha')">
           <video src="video2.MP4" muted playsinline preload="metadata"></video>
           <div class="play-icon">☺️</div>
         </div>
-
         <div class="gallery-item" onclick="openLightbox('video3.MP4', 'video', '26/04/2026! hehe some pretty lady tried to scam me to send her moneyy')">
           <video src="video3.MP4" muted playsinline preload="metadata"></video>
           <div class="play-icon">☺️</div>
         </div>
-
         <div class="gallery-item" onclick="openLightbox('video4.MP4', 'video', 'im gonna say this is on the 21/04/2026 hehe i really cannot get bored of your smile darling zz💛')">
           <video src="video4.MP4" muted playsinline preload="metadata"></video>
           <div class="play-icon">☺️</div>
         </div>
-
         <div class="gallery-item" onclick="openLightbox('video5.MP4', 'video', '22/01/2026 i think! hehe the first video im addicted to HAISSS hahah darling i really want school to reopen as soon as possible so i can hangout with you everyday..')">
           <video src="video5.MP4" muted playsinline preload="metadata"></video>
           <div class="play-icon">☺️</div>
         </div>
-
         <div class="gallery-item" onclick="openLightbox('video6.MP4', 'video', 'hehe i dont remember the exact date butbutbutbut.. today we went to eat sushigo the first time!! hehe all i can remember about that day is i just kept looking at u hehe🙈')">
           <video src="video6.MP4" muted playsinline preload="metadata"></video>
           <div class="play-icon">☺️</div>
         </div>
-
-        <!-- ↑↑↑ ADD MORE ABOVE HERE ↑↑↑ -->
-
       </div>
       <p class="gallery-add-note">i wish you send me more photos/videos so i can spend more time here all the time hehe🤍</p>
     </div>
 
-    <!-- JOURNAL TAB -->
+    <!-- JOURNAL TAB (bryan's) -->
     <div id="journal-tab">
-
-      <!-- ↓↓↓ PASTE NEW ENTRIES AT THE TOP ↓↓↓ -->
-
       <div class="journal-entry">
         <div class="journal-date">28 Apr 2026</div>
         <div class="journal-mood">🙈</div>
         <div class="journal-title">promise that was never made.</div>
         <div class="journal-text">idrk how to do this but ahah its been 2 days and ive been thinking alot to myself haha even resorted to talking with an AI about this shit. before whatever happened between us, i already know deep down ull nvr like me and we could never be a thing,, but after whatever happened, i genuinely hope im wrong. i remembered u asked me once if i would chase u if ure single now, and my answer was im gonna wait till ure 50, hahahah i guess at that point i thought it was inappropriate to tell u im gonna chase u if ure single and i didnt wanna think much about it.. but ive made up my mind now!! hahahaha i promise if ure single im gonna chase u until u tell me to get lost.. ill try till the day ur smile, ur laughter, ur tears, ur whine, ur kiss, ur everything is mine hehe i want to be there for all ur happiness, sadness and everything in between.. im gonna take care and protect u from everything if u let me.. but for now i wont let things be weird between us, if being friends is all we can be then so be it.. <br><br>i miss u so freaking much haha shldve hugged u longer that day,, hehe im gonna once again give myself 6months to see if it works for me!! u always tell me if we met earlier things wouldve been different hehe i hope i die soon so i can start my next life faster and and we can be together faster HEHE next lifetime forward, i will find u in every lifetime AND I PROMISE MY SOUL WILL KNOW URS! hehe i promise ill leave the last page of our chapter empty for just in case okay hehe<br><br>dont mind ur emo self bryan, i dont have anywhere else to share.. I FOUND OUT I CAN POST FOR CLOSE FRIENDS ONLY IN INSTA WTFUCK HAHAHA okay bye please come back here 6 months later to update me how ure doing nigga</div>
       </div>
-
       <div class="journal-entry">
         <div class="journal-date">29 Apr 2026</div>
         <div class="journal-mood">🥲</div>
         <div class="journal-title">hahaha</div>
-        <div class="journal-text">i dreamt of us last night,, and went to reread all the stuff u typed in the secret thing hahaa. then i realised u already rejected me ahahaha, that was so good,, thank you for not putting it straight hahaha i know u dont wanna hurt me but i guess i shld stop thinking about it .. zzz ill heal enough to let it go, but human enough to always look back at the possibility of what could be hehe<br><br>once again, ill keep the last page of our chapter empty for just in case...aahah okay time to start working!!</be></div>
+        <div class="journal-text">i dreamt of us last night,, and went to reread all the stuff u typed in the secret thing hahaa. then i realised u already rejected me ahahaha, that was so good,, thank you for not putting it straight hahaha i know u dont wanna hurt me but i guess i shld stop thinking about it .. zzz ill heal enough to let it go, but human enough to always look back at the possibility of what could be hehe<br><br>once again, ill keep the last page of our chapter empty for just in case...aahah okay time to start working!!</div>
       </div>
-
       <div class="journal-entry">
         <div class="journal-date">7 May 2026</div>
         <div class="journal-mood">😓</div>
         <div class="journal-title">how could iiii</div>
         <div class="journal-text">i'm so tired of everything.. i wanna lie down and just stare at the sky..</div>
       </div>
-      <!-- ↑↑↑ PASTE NEW ENTRIES ABOVE HERE ↑↑↑ -->
+    </div>
 
+    <!-- HER DIARY TAB -->
+    <div id="herdiary-tab">
+      <div class="herdiary-intro">
+        <span class="herdiary-intro-emoji">🌸</span>
+        <div class="herdiary-intro-text">this is your space hehe 💙<br>type whatever you want, it stays here just for you</div>
+      </div>
+      <div class="herdiary-compose">
+        <textarea class="herdiary-textarea" id="herdiary-input" placeholder="what's on your mind today.."></textarea>
+        <div class="herdiary-row">
+          <span class="herdiary-status" id="herdiary-status"></span>
+          <button class="herdiary-save-btn" id="herdiary-save-btn" onclick="saveHerEntry()">save 🌸</button>
+        </div>
+      </div>
+      <div class="herdiary-feed" id="herdiary-feed">
+        <div class="herdiary-empty">loading your entries..</div>
+      </div>
     </div>
 
     <div style="margin-top: 2rem; text-align: center;">
@@ -326,56 +346,161 @@
     const BIN_URL = 'https://api.jsonbin.io/v3/b/' + BIN_ID;
     const HEADERS = { 'Content-Type': 'application/json', 'X-Master-Key': API_KEY };
 
-    // ── SECRET TAP: single-tap 💌 to open mine page ──
+    // ── SECRET TAP ──
     document.getElementById('secret-tap-emoji').addEventListener('click', function() {
       showMinePage();
     });
 
-    // ── MINE PAGE ──
-function showMinePage() {
-  const pw = prompt('🔒boo :p guess it if u can');
-  if (pw === null) return; // cancelled
-  if (pw.toLowerCase() === '11111111') {
-    hideAll();
-    document.getElementById('mine-page').style.display = 'block';
-    window.scrollTo({ top: 0, behavior: 'smooth' });
-  } else {
-    alert('wrong password dummy 🙈');
-  }
-}
+    // ── MINE PAGE with password ──
+    function showMinePage() {
+      const pw = prompt('🔒boo :p guess it if u can');
+      if (pw === null) return;
+      if (pw.toLowerCase() === '11111111') {
+        hideAll();
+        document.getElementById('mine-page').style.display = 'block';
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+      } else {
+        alert('wrong password dummy 🙈');
+      }
+    }
 
     function switchTab(tab) {
       document.getElementById('gallery-tab').style.display = tab === 'gallery' ? 'block' : 'none';
       document.getElementById('journal-tab').style.display = tab === 'journal' ? 'block' : 'none';
+      document.getElementById('herdiary-tab').style.display = tab === 'herdiary' ? 'block' : 'none';
       document.querySelectorAll('.mine-tab').forEach((btn, i) => {
-        btn.classList.toggle('active', (tab === 'gallery' && i === 0) || (tab === 'journal' && i === 1));
+        btn.classList.toggle('active',
+          (tab === 'gallery' && i === 0) ||
+          (tab === 'journal' && i === 1) ||
+          (tab === 'herdiary' && i === 2)
+        );
       });
+      if (tab === 'herdiary') loadHerDiary();
     }
 
     // ── LIGHTBOX ──
-function openLightbox(src, type, caption) {
-  const lb = document.getElementById('lightbox');
-  const img = document.getElementById('lightbox-img');
-  const vid = document.getElementById('lightbox-video');
-  if (type === 'img') {
-    img.src = src; img.style.display = 'block';
-    vid.style.display = 'none'; vid.pause && vid.pause();
-  } else {
-    vid.src = src; vid.style.display = 'block';
-    img.style.display = 'none';
-  }
-  // show caption
-  let capEl = document.getElementById('lightbox-caption');
-  if (!capEl) {
-    capEl = document.createElement('div');
-    capEl.id = 'lightbox-caption';
-    capEl.style.cssText = 'color:#fff; font-size:13px; text-align:center; margin-top:12px; opacity:0.85; max-width:500px; line-height:1.7; padding: 0 1rem 2rem;';
-    lb.appendChild(capEl);
-  }
-  capEl.textContent = caption || '';
-  lb.classList.add('open');
-}
+    function openLightbox(src, type, caption) {
+      const lb = document.getElementById('lightbox');
+      const img = document.getElementById('lightbox-img');
+      const vid = document.getElementById('lightbox-video');
+      if (type === 'img') {
+        img.src = src; img.style.display = 'block';
+        vid.style.display = 'none'; vid.pause && vid.pause();
+      } else {
+        vid.src = src; vid.load(); vid.style.display = 'block';
+        img.style.display = 'none';
+      }
+      let capEl = document.getElementById('lightbox-caption');
+      if (!capEl) {
+        capEl = document.createElement('div');
+        capEl.id = 'lightbox-caption';
+        capEl.style.cssText = 'color:#fff; font-size:13px; text-align:center; margin-top:12px; opacity:0.85; max-width:500px; line-height:1.7; padding: 0 1rem 2rem;';
+        lb.appendChild(capEl);
+      }
+      capEl.textContent = caption || '';
+      lb.classList.add('open');
+    }
 
+    function closeLightbox() {
+      const lb = document.getElementById('lightbox');
+      const vid = document.getElementById('lightbox-video');
+      lb.classList.remove('open');
+      vid.pause && vid.pause();
+      vid.src = '';
+    }
+
+    document.getElementById('lightbox').addEventListener('click', function(e) {
+      if (e.target === this) closeLightbox();
+    });
+
+    // ── HER DIARY ──
+    async function loadHerDiary() {
+      const feed = document.getElementById('herdiary-feed');
+      feed.innerHTML = '<div class="herdiary-empty">loading..</div>';
+      try {
+        const res = await fetch(BIN_URL + '/latest', { headers: { 'X-Master-Key': API_KEY } });
+        const data = await res.json();
+        const entries = data.record.herdiary || [];
+        renderHerDiary(entries);
+      } catch (e) {
+        feed.innerHTML = '<div class="herdiary-empty">couldn\'t load 😢 try again!</div>';
+      }
+    }
+
+    function renderHerDiary(entries) {
+      const feed = document.getElementById('herdiary-feed');
+      feed.innerHTML = '';
+      if (!entries || entries.length === 0) {
+        feed.innerHTML = '<div class="herdiary-empty">nothing here yet..<br>write something, it\'ll stay here just for you 🌸</div>';
+        return;
+      }
+      // show newest first
+      [...entries].reverse().forEach((e, idx) => {
+        const realIdx = entries.length - 1 - idx;
+        const el = document.createElement('div');
+        el.className = 'herdiary-entry';
+        el.innerHTML = `
+          <div class="herdiary-entry-time">${formatTime(e.ts)}</div>
+          <div class="herdiary-entry-text">${escapeHtml(e.text)}</div>
+          <button class="herdiary-delete-btn" onclick="deleteHerEntry(${realIdx})" title="delete">🗑</button>
+        `;
+        feed.appendChild(el);
+      });
+    }
+
+    async function saveHerEntry() {
+      const input = document.getElementById('herdiary-input');
+      const btn = document.getElementById('herdiary-save-btn');
+      const status = document.getElementById('herdiary-status');
+      const text = input.value.trim();
+      if (!text) return;
+      btn.disabled = true; status.textContent = 'saving..';
+      try {
+        const res = await fetch(BIN_URL + '/latest', { headers: { 'X-Master-Key': API_KEY } });
+        const data = await res.json();
+        const entries = data.record.herdiary || [];
+        const secrets = data.record.secrets || [];
+        entries.push({ text, ts: Date.now() });
+        await fetch(BIN_URL, { method: 'PUT', headers: HEADERS, body: JSON.stringify({ secrets, herdiary: entries }) });
+        input.value = ''; status.textContent = 'saved 🌸';
+        setTimeout(() => status.textContent = '', 2000);
+        renderHerDiary(entries);
+      } catch (e) {
+        status.textContent = 'failed to save 😢';
+      } finally {
+        btn.disabled = false;
+      }
+    }
+
+    async function deleteHerEntry(idx) {
+      if (!confirm('delete this entry?')) return;
+      const status = document.getElementById('herdiary-status');
+      status.textContent = 'deleting..';
+      try {
+        const res = await fetch(BIN_URL + '/latest', { headers: { 'X-Master-Key': API_KEY } });
+        const data = await res.json();
+        const entries = data.record.herdiary || [];
+        const secrets = data.record.secrets || [];
+        entries.splice(idx, 1);
+        await fetch(BIN_URL, { method: 'PUT', headers: HEADERS, body: JSON.stringify({ secrets, herdiary: entries }) });
+        status.textContent = '';
+        renderHerDiary(entries);
+      } catch (e) {
+        status.textContent = 'failed 😢';
+      }
+    }
+
+    // auto-grow textarea
+    document.getElementById('herdiary-input').addEventListener('input', function() {
+      this.style.height = 'auto';
+      this.style.height = Math.min(this.scrollHeight, 300) + 'px';
+    });
+    // save on Ctrl+Enter / Cmd+Enter
+    document.getElementById('herdiary-input').addEventListener('keydown', function(e) {
+      if (e.key === 'Enter' && (e.ctrlKey || e.metaKey)) { e.preventDefault(); saveHerEntry(); }
+    });
+
+    // ── MESSAGES ──
     const messages = {
       goodday: { emoji: "😆", title: "Open when you're having a good day", text: "the best is yet to come!! hehe i'm glad that today has been kind to you, i love your smile a lot,, so please keep smiling! since you're having a good day,, hmm you should take a photo/video/tiktok and and and you know you knowww.. accidentally send it to <a href='https://t.me/bryanananananannanananannaanna' target='_blank' style='color:#c45c8a; font-weight:600; text-decoration:none;'>idkk</a> ahahah.\n\nokay bye stop reading this hahah go enjoy the rest of the day!!\n\np.s. hehe you deserve days like this for the rest of your life!! i hope no guys notices how pretty you look when you smile zzz 💛" },
       accomplished: { emoji: "✨", title: "Open when you accomplished something", text: "HIII DUMMYYYY!! hehe whatever you accomplished, GOODJOBB I'M SO PROUD OF YOU!!! YOU KNOW THAT RIGHTTTT!! hehe i hope you're proud of yourself toooo,, and and know that this is just the beginning ahah there's so much more coming for you and and i cannot wait for you to kill it every single time, and and i hope you can come back to this although it'll be the same stuff HAHAHAHAHAHAHAHA\n\np.s. hehe no matter how big or small the achievements, i'm still proud of you okie hehe dummyyy👻hehe darling i hope u know ill notice all ur small wins okie hehehehe im soooo proud of uuuu!!!" },
@@ -562,8 +687,9 @@ function openLightbox(src, type, caption) {
         const res = await fetch(BIN_URL + '/latest', { headers: { 'X-Master-Key': API_KEY } });
         const data = await res.json();
         const secrets = data.record.secrets || [];
+        const herdiary = data.record.herdiary || [];
         secrets.push({ text, ts: Date.now() });
-        await fetch(BIN_URL, { method: 'PUT', headers: HEADERS, body: JSON.stringify({ secrets }) });
+        await fetch(BIN_URL, { method: 'PUT', headers: HEADERS, body: JSON.stringify({ secrets, herdiary }) });
         input.value = ''; input.style.height = 'auto'; status.textContent = '';
         const feed = document.getElementById('secret-feed2');
         feed.innerHTML = '';
@@ -581,22 +707,10 @@ function openLightbox(src, type, caption) {
       }
     }
 
-    // console helper — open browser console and type clearSecrets() to wipe all messages
     async function clearSecrets() {
-      await fetch(BIN_URL, { method: 'PUT', headers: HEADERS, body: JSON.stringify({ secrets: [] }) });
-      console.log('secrets cleared!');
+      await fetch(BIN_URL, { method: 'PUT', headers: HEADERS, body: JSON.stringify({ secrets: [], herdiary: [] }) });
+      console.log('cleared!');
     }
-
-    function closeLightbox() {
-  const lb = document.getElementById('lightbox');
-  const vid = document.getElementById('lightbox-video');
-  lb.classList.remove('open');
-  vid.pause && vid.pause();
-  vid.src = '';
-}
-    document.getElementById('lightbox').addEventListener('click', function(e) {
-  if (e.target === this) closeLightbox();
-});
   </script>
 
 </body>
