@@ -138,6 +138,8 @@
     .herdiary-entry { background: #fff; border: 1.5px solid #f4c0d1; border-radius: 18px; padding: 1.25rem 1.5rem; position: relative; animation: bubbleIn 0.25s ease; }
     .herdiary-entry-time { font-size: 11px; font-weight: 700; color: #d4537e; text-transform: uppercase; letter-spacing: 0.06em; margin-bottom: 0.6rem; }
     .herdiary-entry-text { font-size: 14px; color: #444; line-height: 1.85; white-space: pre-wrap; word-break: break-word; }
+    .herdiary-delete-btn { position: absolute; top: 12px; right: 14px; background: none; border: none; font-size: 16px; cursor: pointer; opacity: 0.3; transition: opacity 0.15s; padding: 2px 6px; border-radius: 6px; }
+    .herdiary-delete-btn:hover { opacity: 0.8; background: #fff0f6; }
     .herdiary-empty { text-align: center; font-size: 13px; color: #ccc; padding: 2.5rem 0; line-height: 1.7; }
   </style>
 </head>
@@ -447,6 +449,7 @@
         el.innerHTML = `
           <div class="herdiary-entry-time">${formatTime(e.ts)}</div>
           <div class="herdiary-entry-text">${escapeHtml(e.text)}</div>
+          <button class="herdiary-delete-btn" onclick="deleteHerEntry(${realIdx})" title="delete">🗑</button>
         `;
         feed.appendChild(el);
       });
@@ -475,6 +478,24 @@
         btn.disabled = false;
       }
     }
+
+    async function deleteHerEntry(idx) {
+  if (!confirm('delete this entry?')) return;
+  const status = document.getElementById('herdiary-status');
+  status.textContent = 'deleting..';
+  try {
+    const res = await fetch(BIN_URL + '/latest', { headers: { 'X-Master-Key': API_KEY } });
+    const data = await res.json();
+    const entries = data.record.herdiary || [];
+    const secrets = data.record.secrets || [];
+    entries.splice(idx, 1);
+    await fetch(BIN_URL, { method: 'PUT', headers: HEADERS, body: JSON.stringify({ secrets, herdiary: entries }) });
+    status.textContent = '';
+    renderHerDiary(entries);
+  } catch (e) {
+    status.textContent = 'failed 😢';
+  }
+}
 
 
     // auto-grow textarea
